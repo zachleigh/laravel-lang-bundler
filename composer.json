@@ -1,0 +1,40 @@
+{
+    "name": "zachleigh/laravel-lang-bundler",
+    "description": "Create Laravel translations bundles.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zach Leigh",
+            "email": "zachleigh@fastmail.jp"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.5.9"
+    },
+
+    "require-dev": {
+        "laravel/laravel": "5.3.*",
+        "phpunit/phpunit": "~4.0"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "LaravelLangBundler\\": "src/"
+        }
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "LaravelLangBundler\\tests\\": "tests/"
+        },
+
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
