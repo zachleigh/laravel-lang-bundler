@@ -62,7 +62,9 @@ class TestCase extends IlluminateTestCase
 
         $this->translator = new Translator();
 
-        $filesystem->makeDirectory(resource_path('lang'));
+        if (!file_exists(resource_path('lang'))) {
+            $filesystem->makeDirectory(resource_path('lang'));
+        }
     }
 
     /**
