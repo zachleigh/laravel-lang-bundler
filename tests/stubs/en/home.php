@@ -2,6 +2,6 @@
 
 return [
     'welcome' => 'Welcome',
-    'signup' => 'Signup',
-    'login' => 'Login'
+    'signup'  => 'Signup',
+    'login'   => 'Login',
 ];
