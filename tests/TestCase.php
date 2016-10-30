@@ -123,9 +123,13 @@ class TestCase extends IlluminateTestCase
     {
         $filesystem = new Filesystem();
 
-        $filesystem->makeDirectory(resource_path('lang/en/'));
-
-        $filesystem->makeDirectory(resource_path('lang/ja/'));
+        if (!file_exists(resource_path('lang/en/'))) {
+            $filesystem->makeDirectory(resource_path('lang/en/'));
+        }
+        
+        if (!file_exists(resource_path('lang/ja/'))) {
+            $filesystem->makeDirectory(resource_path('lang/ja/'));
+        }
 
         $translations = [
             'en' => __DIR__.'/stubs/en/',
