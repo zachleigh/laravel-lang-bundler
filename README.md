@@ -95,7 +95,7 @@ If you wish to transform lang file keys to snake_case, StudlyCase, or camelCase,
 This is a brief list of the current issues that need to be resolved to make this package more useful and complete:
   - Passed parameter names are used for all items in bundle leading to naming conflicts. Need to namespace them: 'key.parameter'
   - Currently does not support trans_choice(). Could also use namespacing here
-  - Bundle names can get extremely long. Naming shortcuts could be registered in config to resolve this. 
+  - Bundle names can get extremely long. Naming shortcuts could be registered in config to resolve this. Also could allow the entire package to have a shortcut (if you use a single lang file) or bundles to have their own shortcuts.
 
 ### Contributing
 Contributions are more than welcome. Fork, improve and make a pull request. For bugs, ideas for improvement or other, please create an [issue](https://github.com/zachleigh/laravel-lang-bundler/issues).

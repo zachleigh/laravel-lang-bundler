@@ -22,17 +22,17 @@
     "autoload": {
         "psr-4": {
             "LaravelLangBundler\\": "src/"
-        }
-    },
-
-    "autoload-dev": {
-        "psr-4": {
-            "LaravelLangBundler\\tests\\": "tests/"
         },
 
         "files": [
             "src/helpers.php"
         ]
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "LaravelLangBundler\\tests\\": "tests/"
+        }
     },
 
     "minimum-stability": "stable",
