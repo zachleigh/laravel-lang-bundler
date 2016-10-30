@@ -7,7 +7,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Transform lang value keys.
-    | Available options: 'camel_case', 'none', 'snake_case', 'studly_case'. 
+    | Available options: 'camel_case', 'none', 'snake_case', 'studly_case'.
     */
-    'key_transform' => 'none'
+    'key_transform' => 'none',
 ];

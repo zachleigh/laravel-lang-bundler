@@ -2,5 +2,5 @@
 
 return [
     'user.welcomeUser',
-    'user.messageFrom'
+    'user.messageFrom',
 ];

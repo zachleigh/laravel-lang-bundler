@@ -2,6 +2,6 @@
 
 return [
     'welcome' => 'ようこそ',
-    'signup' => 'サインアップ',
-    'login' => 'ログイン'
+    'signup'  => 'サインアップ',
+    'login'   => 'ログイン',
 ];

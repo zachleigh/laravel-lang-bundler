@@ -6,7 +6,7 @@ return [
         'home.signup',
         'home.login',
         'nav.home',
-        'nav.top'
+        'nav.top',
     ],
 
     'component2' => [
@@ -14,6 +14,6 @@ return [
         'home.signup',
         'home.login',
         'nav.home',
-        'nav.top'
-    ]
+        'nav.top',
+    ],
 ];

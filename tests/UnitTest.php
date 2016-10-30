@@ -74,8 +74,8 @@ class UnitTest extends TestCase
         $expected = [
             'components' => [
                 'sub-components' => $this->getExpected('bundle4'),
-                'bundle3' => $this->getExpected('bundle3')['bundle3']
-            ]
+                'bundle3'        => $this->getExpected('bundle3')['bundle3'],
+            ],
         ];
 
         $this->assertEquals($expected, $map);
@@ -219,7 +219,7 @@ class UnitTest extends TestCase
 
         $expected = [
             'welcome_user' => 'Welcome Bob',
-            'message_from' => 'You have a message from Sally'
+            'message_from' => 'You have a message from Sally',
         ];
 
         $this->assertEquals($expected, $translations->all());
@@ -232,7 +232,7 @@ class UnitTest extends TestCase
     {
         $expected = [
             'WelcomeUser' => 'Welcome Bob',
-            'MessageFrom' => 'You have a message from Sally'
+            'MessageFrom' => 'You have a message from Sally',
         ];
 
         $this->transformTest('studly_case', $expected);
@@ -245,7 +245,7 @@ class UnitTest extends TestCase
     {
         $expected = [
             'welcomeUser' => 'Welcome Bob',
-            'messageFrom' => 'You have a message from Sally'
+            'messageFrom' => 'You have a message from Sally',
         ];
 
         $this->transformTest('camel_case', $expected);
@@ -258,7 +258,7 @@ class UnitTest extends TestCase
     {
         $expected = [
             'welcome_user' => 'Welcome Bob',
-            'message_from' => 'You have a message from Sally'
+            'message_from' => 'You have a message from Sally',
         ];
 
         $this->transformTest('snake_case', $expected, 'bundle6');
@@ -267,8 +267,8 @@ class UnitTest extends TestCase
     /**
      * Perform key transformation test.
      *
-     * @param  string $case
-     * @param  array  $expected
+     * @param string $case
+     * @param array  $expected
      */
     protected function transformTest($case, $expected, $bundle = 'bundle5')
     {
