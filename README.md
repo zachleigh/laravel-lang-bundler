@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/zachleigh/laravel-lang-bundler.svg?branch=master)](https://travis-ci.org/zachleigh/laravel-lang-bundler)
 [![Latest Stable Version](https://poser.pugx.org/zachleigh/laravel-lang-bundler/version.svg)](//packagist.org/packages/zachleigh/laravel-lang-bundler)
 [![Total Downloads](https://poser.pugx.org/zachleigh/laravel-lang-bundler/downloads)](https://packagist.org/packages/zachleigh/laravel-lang-bundler)
-[![StyleCI](https://styleci.io/repos/60463173/shield?style=flat)](https://styleci.io/repos/60463173)
+[![StyleCI](https://styleci.io/repos/72352058/shield?style=flat)](https://styleci.io/repos/72352058)
 [![License](https://poser.pugx.org/zachleigh/laravel-lang-bundler/license.svg)](//packagist.org/packages/zachleigh/laravel-lang-bundler)  
 ##### Make bundles of translation values. 
 
