@@ -31,7 +31,7 @@ class Translator
     /**
      * Get key for translation value.
      *
-     * @param  string $id
+     * @param string $id
      *
      * @return string
      */

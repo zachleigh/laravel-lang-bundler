@@ -6,7 +6,7 @@ return [
         'home.signup',
         'home.login',
         'nav.home',
-        'nav.top'
+        'nav.top',
     ],
 
     'forum' => [
@@ -15,13 +15,13 @@ return [
             'home.signup',
             'home.login',
             'nav.home',
-            'nav.top'
+            'nav.top',
         ],
 
         'component3' => [
             'payment.creditcard',
             'payment.date',
-            'payment.submit'
-        ]
-    ]
+            'payment.submit',
+        ],
+    ],
 ];

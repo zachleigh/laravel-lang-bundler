@@ -12,7 +12,7 @@ class Bundler
      * @var array
      */
     protected $bundleMap = [];
-    
+
     /**
      * Get bundle values for given path.
      *

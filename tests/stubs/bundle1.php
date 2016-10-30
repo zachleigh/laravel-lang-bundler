@@ -5,5 +5,5 @@ return [
     'home.signup',
     'home.login',
     'nav.home',
-    'nav.top'
+    'nav.top',
 ];

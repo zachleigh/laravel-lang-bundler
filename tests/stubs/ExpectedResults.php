@@ -151,8 +151,8 @@ trait ExpectedResults
     {
         return [
             'welcome' => 'Welcome',
-            'signup' => 'Signup',
-            'login' => 'Login'
+            'signup'  => 'Signup',
+            'login'   => 'Login',
         ];
     }
 
@@ -165,7 +165,7 @@ trait ExpectedResults
     {
         return [
             'home' => 'Home',
-            'top' => 'Top'
+            'top'  => 'Top',
         ];
     }
 
@@ -178,8 +178,8 @@ trait ExpectedResults
     {
         return [
             'welcome' => 'ようこそ',
-            'signup' => 'サインアップ',
-            'login' => 'ログイン'
+            'signup'  => 'サインアップ',
+            'login'   => 'ログイン',
         ];
     }
 
@@ -192,7 +192,7 @@ trait ExpectedResults
     {
         return [
             'home' => 'ホーム',
-            'top' => 'トップ'
+            'top'  => 'トップ',
         ];
     }
 }

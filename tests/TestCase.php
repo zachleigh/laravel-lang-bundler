@@ -2,7 +2,6 @@
 
 namespace LaravelLangBundler\tests;
 
-use Artisan;
 use LaravelLangBundler\Bundler;
 use LaravelLangBundler\Translator;
 use Illuminate\Filesystem\Filesystem;
@@ -126,14 +125,14 @@ class TestCase extends IlluminateTestCase
         if (!file_exists(resource_path('lang/en/'))) {
             $filesystem->makeDirectory(resource_path('lang/en/'));
         }
-        
+
         if (!file_exists(resource_path('lang/ja/'))) {
             $filesystem->makeDirectory(resource_path('lang/ja/'));
         }
 
         $translations = [
             'en' => __DIR__.'/stubs/en/',
-            'ja' => __DIR__.'/stubs/ja/'
+            'ja' => __DIR__.'/stubs/ja/',
         ];
 
         foreach ($translations as $name => $translation) {

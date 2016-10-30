@@ -79,7 +79,7 @@ class IntegrationTest extends TestCase
 
         $expected = [
             'welcome_user' => 'Welcome Bob',
-            'message_from' => 'You have a message from Sally'
+            'message_from' => 'You have a message from Sally',
         ];
 
         $this->assertEquals($expected, $translations->all());
@@ -98,7 +98,7 @@ class IntegrationTest extends TestCase
 
         $expected = [
             'welcome_user' => 'Welcome Bob',
-            'message_from' => 'You have a message from Sally'
+            'message_from' => 'You have a message from Sally',
         ];
 
         $this->assertEquals($expected, $translations->all());
