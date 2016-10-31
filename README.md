@@ -10,6 +10,7 @@
   - [Why](#why)
   - [Install](#install)
   - [Usage](#usage)
+  - [Commands](#commands)
   - [Configuration](#configuration)
   - [Limitations](#limitations)
   - [Contributing](#contributing)
@@ -145,6 +146,17 @@ transB('bundle_name', [
     'invite_from.user' => 'George'
 ]);
 ```
+
+### Commands
+##### php artisan langb:start
+Get started by creating a bundles directory in your lang folder.
+
+##### php artisan langb:new {path}
+Create a new bundle file located at path. For example:
+```
+php artisan langb:new components.user.profile
+```
+This would create the file lang/bundles/components/user/profile.php with an empty returned array.
 
 ### Configuration
 ##### shortcuts

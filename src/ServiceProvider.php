@@ -3,6 +3,7 @@
 namespace LaravelLangBundler;
 
 use LaravelLangBundler\Commands\MakeBundlesFolder;
+use LaravelLangBundler\Commands\MakeNewBundleFile;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -45,6 +46,12 @@ class ServiceProvider extends BaseServiceProvider
             return $app[MakeBundlesFolder::class];
         });
 
+        $this->app->singleton('command.langb.new', function ($app) {
+            return $app[MakeNewBundleFile::class];
+        });
+
         $this->commands('command.langb.start');
+
+        $this->commands('command.langb.new');
     }
 }
