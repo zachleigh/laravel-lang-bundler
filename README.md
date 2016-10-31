@@ -13,6 +13,7 @@
   - [Commands](#commands)
   - [Configuration](#configuration)
   - [Limitations](#limitations)
+  - [Testing](#testing)
   - [Contributing](#contributing)
 
 ### Why
@@ -218,6 +219,11 @@ return [
 This is a brief list of the current issues that need to be resolved to make this package more useful and complete:
   - Currently does not support trans_choice(). Could implement this using parameters and namespacing.
   - Bundle names can now be registered as shortcuts in config. This is less than ideal though because you have to register a bundle in two places. It would be better to have automatic name resolution or a way to name a bundle within the bundle.
+
+### Testing
+```
+composer test
+```
 
 ### Contributing
 Contributions are more than welcome. Fork, improve and make a pull request. For bugs, ideas for improvement or other, please create an [issue](https://github.com/zachleigh/laravel-lang-bundler/issues).
