@@ -17,7 +17,7 @@
 ### Why
 Why use this package? Because this sucks:
 ```html
-<vue-component
+<component
     welcome={{ trans('home.welcome') }}
     login={{ trans('home.login') }}
     signup={{ trans('home.signup') }}
@@ -25,13 +25,13 @@ Why use this package? Because this sucks:
     friends={{ trans('user.home.friends') }}
     intro={{ trans('user.home.intro') }}
     body={{ trans('user.home.body') }}
-></vue-component>
+></component>
 ```
-And this is is so much better:
+And this is so much better:
 ```html
-<vue-component
+<component
     :lang={{ transB('bundle_name')->toJson() }}
-></vue-component>
+></component>
 ```
 
 ### Install

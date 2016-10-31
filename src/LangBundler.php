@@ -28,9 +28,12 @@ class LangBundler
     }
 
     /**
-     * Get translations for a bundle.
+     * Translate the given message.
      *
-     * @param string $id
+     * @param  string  $id
+     * @param  array   $parameters
+     * @param  string  $domain
+     * @param  string  $locale
      *
      * @return Collection
      */

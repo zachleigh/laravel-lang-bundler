@@ -70,6 +70,14 @@ class Translator
         return $id;
     }
 
+    /**
+     * Get valid, namespaced parameters.
+     *
+     * @param array  $parameters
+     * @param string $namespace
+     *
+     * @return array
+     */
     protected function getNamespacedParameters($parameters, $namespace)
     {
         return collect($parameters)->mapWithKeys(function ($value, $key) use ($namespace) {
