@@ -52,7 +52,10 @@ php artisan vendor:publish --tag=config
 ```
 
 ##### 4. Create a 'bundles' directory in resources/lang/.      
-There's no command for this yet, so just do it manually.
+Do it manually or use the command:
+```
+php artisan langb:start
+```
 
 ### Usage
 ##### 1. Make a bundle.   
@@ -99,7 +102,7 @@ Get your translated bundle by passing the bundle path to the transB() helper fun
 ```php
 transB('bundles.components.bundle_name');
 ```
-transB() returns a collection of translated values keyed by the original translation key. Continuing the example above, transB() would give us a collection that contains the following array::
+transB() returns a collection of translated values keyed by the original translation key. Continuing the example above, transB() would give us a collection that contains the following array:
 ```php
 [
     'welcome' => 'Welcome!',
@@ -135,7 +138,7 @@ return [
 ];
 ```
 Avoid the naming conflict by namespacing the parameters when passing them to transB():
-```html
+```php
 transB('bundle_name', [
     'welcome_user.user' => 'Bob',
     'message_to.user' => 'Sally',

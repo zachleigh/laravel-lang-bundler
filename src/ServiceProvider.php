@@ -2,6 +2,7 @@
 
 namespace LaravelLangBundler;
 
+use LaravelLangBundler\Commands\MakeBundlesFolder;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -19,6 +20,8 @@ class ServiceProvider extends BaseServiceProvider
                 new Translator()
             );
         });
+
+        $this->registerCommands();
     }
 
     /**
@@ -31,5 +34,17 @@ class ServiceProvider extends BaseServiceProvider
         $this->publishes([
             __DIR__.'/config.php' => config_path('lang-bundler.php'),
         ], 'config');
+    }
+
+    /**
+     * Register Artisan commands.
+     */
+    protected function registerCommands()
+    {
+        $this->app->singleton('command.langb.start', function ($app) {
+            return $app[MakeBundlesFolder::class];
+        });
+
+        $this->commands('command.langb.start');
     }
 }
