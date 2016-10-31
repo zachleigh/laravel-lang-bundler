@@ -238,14 +238,14 @@ class UnitTest extends TestCase
 
         $translations = $this->translator->translateBundle($values, [
             'welcome_user.user' => 'Bob',
-            'message_to.user' => 'Sally',
-            'invite_from.user' => 'George'
+            'message_to.user'   => 'Sally',
+            'invite_from.user'  => 'George',
         ]);
 
         $expected = [
-            "welcome_user" => "Welcome Bob",
-            "message_to" => "You sent a message to Sally",
-            "invite_from" => "You have an invite from George"
+            'welcome_user' => 'Welcome Bob',
+            'message_to'   => 'You sent a message to Sally',
+            'invite_from'  => 'You have an invite from George',
         ];
 
         $this->assertEquals($expected, $translations->all());
