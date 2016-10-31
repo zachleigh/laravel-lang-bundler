@@ -205,10 +205,10 @@ trait ExpectedResults
     {
         return [
             'welcome' => 'Welcome',
-            'signup' => 'Signup',
-            'login' => 'Login',
-            'home' => 'Home',
-            'top' => 'Top',
+            'signup'  => 'Signup',
+            'login'   => 'Login',
+            'home'    => 'Home',
+            'top'     => 'Top',
         ];
     }
 }

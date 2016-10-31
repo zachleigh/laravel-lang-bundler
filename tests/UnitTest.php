@@ -283,15 +283,16 @@ class UnitTest extends TestCase
 
         $this->assertEquals($expected, $translations->all());
     }
+
     /**
      * @test
      */
     public function it_finds_bundles_with_registered_shortcut()
     {
         $this->copyStubs('bundle2');
-        
+
         app()['config']->set('lang-bundler.shortcuts', [
-            'test' => 'bundles.bundle2.component1'
+            'test' => 'bundles.bundle2.component1',
         ]);
 
         $values = $this->bundler->getBundleValues('test');
