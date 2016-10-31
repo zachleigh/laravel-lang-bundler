@@ -26,7 +26,7 @@ class Bundler
             $this->mapBundles();
         }
 
-        $pathKeys = explode('.', $path);
+        $pathKeys = $this->getKeysFromPath($path);
 
         $namespace = array_shift($pathKeys);
 
@@ -71,6 +71,17 @@ class Bundler
         }
 
         return $this->getBundleMap();
+    }
+
+    protected function getKeysFromPath($path)
+    {
+        $shortcuts = config('lang-bundler.shortcuts');
+
+        if (in_array($path, array_keys($shortcuts))) {
+            $path = $shortcuts[$path];
+        }
+
+        return explode('.', $path);
     }
 
     /**
