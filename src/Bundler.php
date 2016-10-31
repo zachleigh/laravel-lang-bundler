@@ -13,6 +13,8 @@ class Bundler
      */
     protected $bundleMap = [];
 
+    protected $autoAliases = [];
+
     /**
      * Get bundle values for given path.
      *
@@ -67,6 +69,8 @@ class Bundler
 
             $pathKeys = $this->getPathKeys($path);
 
+            $this->registerAlias(collect($pathKeys));
+
             $this->mapContent($content, $pathKeys);
         }
 
@@ -84,8 +88,15 @@ class Bundler
     {
         $aliases = config('lang-bundler.aliases');
 
+        $autoAliases = collect($this->autoAliases)
+            ->filter(function ($value) use ($path) {
+                return $value === $path;
+            });
+
         if (in_array($path, array_keys($aliases))) {
             $path = $aliases[$path];
+        } else if ($autoAliases->count() === 1) {
+            $path = 'bundles.'.$autoAliases->keys()[0];
         }
 
         return explode('.', $path);
@@ -129,6 +140,20 @@ class Bundler
         $key = str_replace('.php', '', explode('/bundles/', $path)[1]);
 
         return explode('/', $key);
+    }
+
+    /**
+     * Register file paths as auto aliases.
+     *
+     * @param  Collection $pathKeys
+     */
+    protected function registerAlias(Collection $pathKeys)
+    {
+        $className = $pathKeys->last();
+
+        $path = $pathKeys->implode('.');
+
+        $this->autoAliases[$path] = $className;
     }
 
     /**

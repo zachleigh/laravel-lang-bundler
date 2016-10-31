@@ -78,31 +78,33 @@ user.php
 ```
 We want all of these values in one bundle.    
 
-Simply register your bundle as an array anywhere in the bundles directory. For example, in the bundles directory, you could create a file called 'components' that looks like this:
+Simply register your bundle as an array anywhere in the bundles directory. For example, in the bundles directory, you could create a folder called 'components' and in it a file called 'bundle_name' that looks like this:
 ```php
 return [
-    'bundle_name' => [
-        'home.welcome',
-        'home.login',
-        'home.signup',
-        'user.profile',
-        'user.friends',
-        'user.body'
-    ]
+    'home.welcome',
+    'home.login',
+    'home.signup',
+    'user.profile',
+    'user.friends',
+    'user.body'
 ];
 ```
 Obviously, 'bundle_name' is the name of the bundle. The other values represent keys found in the above lang files.     
 
 Like in other lang folders, any file/folder in the bundles directory is treated as a level in an array. So in the above example, our file path looks like this:    
 
-lang/bundles/components.php       
+lang/bundles/components/bundle_name.php       
 
-In components.php we have the 'bundle_name' bundle. The path for the 'bundle_name' bundle would be 'bundles.components.bundle_name'.
+The path for the 'bundle_name' bundle would be 'bundles.components.bundle_name'. It is also possible to create multiple named bundles within a single file, but this is not recommended because you can not use auto-aliasing for multi-bundle files.
 
 ##### 2. Get the bundle using the transB() helper function.     
 Get your translated bundle by passing the bundle path to the transB() helper function.
 ```php
 transB('bundles.components.bundle_name');
+```
+Or use the auto-aliased name:
+```php
+transB('bundle_name');
 ```
 transB() returns a collection of translated values keyed by the original translation key. Continuing the example above, transB() would give us a collection that contains the following array:
 ```php
@@ -119,7 +121,7 @@ transB() returns a collection of translated values keyed by the original transla
 ##### 3. Pass parameters to your bundle.     
 Like with the standard trans() function, you may pass parameters to the transB() function as the second argument.
 ```php
-transB('bundles.components.bundle_name', ['parameterName' => $value]);
+transB('bundle_name', ['parameterName' => $value]);
 ```
 If your bundle has conflicting parameter names, you can namespace them. In this example, three values require a `user` parameter.     
 

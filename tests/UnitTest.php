@@ -329,6 +329,20 @@ class UnitTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function it_finds_bundles_from_auto_registered_alias()
+    {
+        $this->copyStubs('components');
+
+        $values = $this->bundler->getBundleValues('bundle4');
+
+        $expected = $this->getExpected('bundle4', true);
+
+        $this->assertEquals($expected, $values->all());
+    }
+
+    /**
      * Perform key transformation test.
      *
      * @param string $case
