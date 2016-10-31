@@ -6,7 +6,10 @@ return [
     | Shortcuts
     |--------------------------------------------------------------------------
     |
-    | Register shortcuts in this array. Shortcut names need to be unique.
+    | Shortcuts make it easier to access your bundle and save you some typing.
+    | Register shortcuts in this array as key/value pairs where the key is the
+    | shortcut name and the value is the period seperated path to the bundle.
+    | Shortcut names need to be unique.
     */
     'shortcuts' => [
         // 'shortcut_name' => 'path.to.bundle'

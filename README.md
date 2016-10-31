@@ -30,7 +30,7 @@ Why use this package? Because this sucks:
 And this is is so much better:
 ```html
 <vue-component
-    :lang={{ transB('bundles.components.bundle_name')->toJson() }}
+    :lang={{ transB('bundle_name')->toJson() }}
 ></vue-component>
 ```
 
