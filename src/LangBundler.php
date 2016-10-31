@@ -5,11 +5,11 @@ namespace LaravelLangBundler;
 class LangBundler
 {
     /**
-     * Bundler instance.
+     * BundleMap instance.
      *
-     * @var Bundler
+     * @var BundleMap
      */
-    protected $bundler;
+    protected $bundleMap;
 
     /**
      * Translator instance.
@@ -21,10 +21,12 @@ class LangBundler
     /**
      * Construct.
      */
-    public function __construct(Bundler $bundler, Translator $translator)
+    public function __construct(BundleMap $bundleMap, Translator $translator)
     {
-        $this->bundler = $bundler;
+        $this->bundleMap = $bundleMap;
         $this->translator = $translator;
+
+        $this->bundleMap->mapBundles();
     }
 
     /**
@@ -39,12 +41,14 @@ class LangBundler
      */
     public function trans($id, $parameters = [], $domain = 'messages', $locale = null)
     {
-        $values = $this->bundler->getBundleValues($id);
+        $bundle = new Bundle($id);
 
-        if ($values->isEmpty()) {
+        $this->bundleMap->setBundleValues($bundle);
+
+        if ($bundle->hasNoValues()) {
             return app('translator')->trans($id, $parameters, $domain, $locale);
         }
 
-        return $this->translator->translateBundle($values, $parameters, $domain, $locale);
+        return $this->translator->translateBundle($bundle, $parameters, $domain, $locale);
     }
 }

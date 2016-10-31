@@ -2,7 +2,7 @@
 
 namespace LaravelLangBundler\tests;
 
-use LaravelLangBundler\Bundler;
+use LaravelLangBundler\BundleMap;
 use LaravelLangBundler\Translator;
 use Illuminate\Filesystem\Filesystem;
 use LaravelLangBundler\ServiceProvider;
@@ -57,7 +57,7 @@ class TestCase extends IlluminateTestCase
 
         parent::setUp();
 
-        $this->bundler = new Bundler();
+        $this->bundleMap = new BundleMap();
 
         $this->translator = new Translator();
 

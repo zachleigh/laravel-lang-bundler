@@ -9,17 +9,22 @@ class Translator
     /**
      * Translate the values in given bundle.
      *
-     * @param Collection $bundle
+     * @param Bundle $bundle
+     * @param array  $parameters
+     * @param string $domain
+     * @param string $locale
      *
      * @return Collection
      */
     public function translateBundle(
-        Collection $bundle,
+        Bundle $bundle,
         $parameters = [],
         $domain = 'messages',
         $locale = null
     ) {
-        return $bundle->mapWithKeys(function ($id) use ($parameters, $domain, $locale) {
+        $values = $bundle->getValues();
+
+        return $values->mapWithKeys(function ($id) use ($parameters, $domain, $locale) {
             $namespace = collect(explode('.', $id))->last();
 
             $key = $this->getKey($namespace);

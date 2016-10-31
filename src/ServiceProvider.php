@@ -17,7 +17,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->app->singleton(LangBundler::class, function ($app) {
             return new LangBundler(
-                new Bundler(),
+                new BundleMap(),
                 new Translator()
             );
         });

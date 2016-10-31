@@ -220,8 +220,6 @@ return [
 ### Limitations    
 This is a brief list of the current issues that need to be resolved to make this package more useful and complete:
   - Currently does not support trans_choice(). Could implement this using parameters and namespacing.
-  - Bundle names can now be registered as aliases in config. This is less than ideal though because you have to register a bundle in two places. It would be better to have automatic name resolution or a way to name a bundle within the bundle. Maybe resolve with command that generates aliases automatically and saves them in config?
-
 
 ### Testing
 ```

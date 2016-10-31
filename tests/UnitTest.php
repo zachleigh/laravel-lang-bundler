@@ -2,6 +2,7 @@
 
 namespace LaravelLangBundler\tests;
 
+use LaravelLangBundler\Bundle;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
 
 class UnitTest extends TestCase
@@ -13,7 +14,7 @@ class UnitTest extends TestCase
      */
     public function it_doesnt_map_bundles_when_bundles_not_present()
     {
-        $map = $this->bundler->mapBundles();
+        $map = $this->bundleMap->mapBundles();
 
         $this->assertEquals([], $map);
     }
@@ -25,7 +26,7 @@ class UnitTest extends TestCase
     {
         $this->copyStubs('bundle1');
 
-        $map = $this->bundler->mapBundles();
+        $map = $this->bundleMap->mapBundles();
 
         $expected = $this->getExpected('bundle1');
 
@@ -39,7 +40,7 @@ class UnitTest extends TestCase
     {
         $this->copyStubs('bundle2');
 
-        $map = $this->bundler->mapBundles();
+        $map = $this->bundleMap->mapBundles();
 
         $expected = $this->getExpected('bundle2');
 
@@ -55,7 +56,7 @@ class UnitTest extends TestCase
 
         $this->copyStubs($bundles);
 
-        $map = $this->bundler->mapBundles();
+        $map = $this->bundleMap->mapBundles();
 
         $expected = $this->getExpected($bundles);
 
@@ -69,7 +70,7 @@ class UnitTest extends TestCase
     {
         $this->copyStubs('components');
 
-        $map = $this->bundler->mapBundles();
+        $map = $this->bundleMap->mapBundles();
 
         $expected = [
             'components' => [
@@ -88,7 +89,9 @@ class UnitTest extends TestCase
     {
         $this->copyStubs('bundle1');
 
-        $values = $this->bundler->getBundleValues('bundles.bundle1');
+        $bundle = new Bundle('bundles.bundle1');
+
+        $values = $this->bundleMap->setBundleValues($bundle);
 
         $expected = $this->getExpected('bundle1', true);
 
@@ -102,7 +105,9 @@ class UnitTest extends TestCase
     {
         $this->copyStubs('bundle2');
 
-        $values = $this->bundler->getBundleValues('bundles.bundle2.component2');
+        $bundle = new Bundle('bundles.bundle2.component2');
+
+        $values = $this->bundleMap->setBundleValues($bundle);
 
         $expected = $this->getExpected('bundle2', true)['component2'];
 
@@ -116,7 +121,9 @@ class UnitTest extends TestCase
     {
         $this->copyStubs(['bundle1', 'bundle2']);
 
-        $values = $this->bundler->getBundleValues('bundles.bundle2.component1');
+        $bundle = new Bundle('bundles.bundle2.component1');
+
+        $values = $this->bundleMap->setBundleValues($bundle);
 
         $expected = $this->getExpected('bundle2', true)['component1'];
 
@@ -130,7 +137,9 @@ class UnitTest extends TestCase
     {
         $this->copyStubs('components');
 
-        $values = $this->bundler->getBundleValues('bundles.components.bundle3.forum.component3');
+        $bundle = new Bundle('bundles.components.bundle3.forum.component3');
+
+        $values = $this->bundleMap->setBundleValues($bundle);
 
         $expected = $this->getExpected('bundle3', true)['forum']['component3'];
 
@@ -144,7 +153,9 @@ class UnitTest extends TestCase
     {
         $this->copyStubs('components');
 
-        $values = $this->bundler->getBundleValues('bundles.components.sub-components.bundle4');
+        $bundle = new Bundle('bundles.components.sub-components.bundle4');
+
+        $values = $this->bundleMap->setBundleValues($bundle);
 
         $expected = $this->getExpected('bundle4', true);
 
@@ -158,7 +169,9 @@ class UnitTest extends TestCase
     {
         $this->copyStubs('components');
 
-        $values = $this->bundler->getBundleValues('bundles.components.none');
+        $bundle = new Bundle('bundles.components.none');
+
+        $values = $this->bundleMap->setBundleValues($bundle);
 
         $this->assertEquals([], $values->all());
     }
@@ -172,9 +185,11 @@ class UnitTest extends TestCase
 
         $this->copyTranslations();
 
-        $values = $this->bundler->getBundleValues('bundles.bundle2.component1');
+        $bundle = new Bundle('bundles.bundle2.component1');
 
-        $translations = $this->translator->translateBundle($values);
+        $this->bundleMap->setBundleValues($bundle);
+
+        $translations = $this->translator->translateBundle($bundle);
 
         $expected = $this->getExpected(['homeEn', 'navEn']);
 
@@ -192,9 +207,11 @@ class UnitTest extends TestCase
 
         app()->setLocale('ja');
 
-        $values = $this->bundler->getBundleValues('bundles.bundle2.component1');
+        $bundle = new Bundle('bundles.bundle2.component1');
 
-        $translations = $this->translator->translateBundle($values);
+        $this->bundleMap->setBundleValues($bundle);
+
+        $translations = $this->translator->translateBundle($bundle);
 
         $expected = $this->getExpected(['homeJa', 'navJa']);
 
@@ -210,10 +227,12 @@ class UnitTest extends TestCase
 
         $this->copyTranslations();
 
-        $values = $this->bundler->getBundleValues('bundles.bundle5');
+        $bundle = new Bundle('bundles.bundle5');
+
+        $this->bundleMap->setBundleValues($bundle);
 
         $translations = $this->translator->translateBundle(
-            $values,
+            $bundle,
             ['user' => 'Bob', 'sender' => 'Sally']
         );
 
@@ -234,9 +253,11 @@ class UnitTest extends TestCase
 
         $this->copyTranslations();
 
-        $values = $this->bundler->getBundleValues('bundles.bundle8');
+        $bundle = new Bundle('bundles.bundle8');
 
-        $translations = $this->translator->translateBundle($values, [
+        $this->bundleMap->setBundleValues($bundle);
+
+        $translations = $this->translator->translateBundle($bundle, [
             'welcome_user.user' => 'Bob',
             'message_to.user'   => 'Sally',
             'invite_from.user'  => 'George',
@@ -301,9 +322,11 @@ class UnitTest extends TestCase
 
         app()['config']->set('lang-bundler.global_key_namespace', 'translations');
 
-        $values = $this->bundler->getBundleValues('bundles.bundle7');
+        $bundle = new Bundle('bundles.bundle7');
 
-        $translations = $this->translator->translateBundle($values);
+        $this->bundleMap->setBundleValues($bundle);
+
+        $translations = $this->translator->translateBundle($bundle);
 
         $expected = $this->getExpected('bundle7');
 
@@ -321,7 +344,9 @@ class UnitTest extends TestCase
             'test' => 'bundles.bundle2.component1',
         ]);
 
-        $values = $this->bundler->getBundleValues('test');
+        $bundle = new Bundle('test');
+
+        $values = $this->bundleMap->setBundleValues($bundle);
 
         $expected = $this->getExpected('bundle2', true)['component1'];
 
@@ -335,7 +360,9 @@ class UnitTest extends TestCase
     {
         $this->copyStubs('components');
 
-        $values = $this->bundler->getBundleValues('bundle4');
+        $bundle = new Bundle('bundle4');
+
+        $values = $this->bundleMap->setBundleValues($bundle);
 
         $expected = $this->getExpected('bundle4', true);
 
@@ -349,18 +376,20 @@ class UnitTest extends TestCase
      * @param array  $expected
      * @param string $bundle
      */
-    protected function transformTest($case, $expected, $bundle = 'bundle5')
+    protected function transformTest($case, $expected, $bundleName = 'bundle5')
     {
-        $this->copyStubs($bundle);
+        $this->copyStubs($bundleName);
 
         $this->copyTranslations();
 
         app()['config']->set('lang-bundler.key_transform', $case);
 
-        $values = $this->bundler->getBundleValues('bundles.'.$bundle);
+        $bundle = new Bundle('bundles.'.$bundleName);
+
+        $this->bundleMap->setBundleValues($bundle);
 
         $translations = $this->translator->translateBundle(
-            $values,
+            $bundle,
             ['user' => 'Bob', 'sender' => 'Sally']
         );
 

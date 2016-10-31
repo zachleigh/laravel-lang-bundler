@@ -4,7 +4,7 @@ namespace LaravelLangBundler;
 
 use Illuminate\Support\Collection;
 
-class Bundler
+class BundleMap
 {
     /**
      * Array containing mapped lang bundles.
@@ -13,29 +13,46 @@ class Bundler
      */
     protected $bundleMap = [];
 
+    /**
+     * Array of auto-aliased file names.
+     *
+     * @var array
+     */
     protected $autoAliases = [];
 
     /**
      * Get bundle values for given path.
      *
-     * @param string $path
+     * @param Bundle $bundle
      *
      * @return Collection
      */
-    public function getBundleValues($path)
+    public function setBundleValues(Bundle $bundle)
     {
         if (empty($this->bundleMap)) {
             $this->mapBundles();
         }
 
-        $pathKeys = $this->getKeysFromPath($path);
+        $bundle->buildKeys($this->autoAliases);
 
-        $namespace = array_shift($pathKeys);
-
-        if ($namespace !== 'bundles') {
-            return collect([]);
+        if (!$bundle->hasValidNamespace()) {
+            return $bundle->setValues(collect([]));
         }
 
+        $values = $this->getBundleValues($bundle->getPathKeys());
+
+        return $bundle->setValues($values);
+    }
+
+    /**
+     * Get trans values for path keys.
+     *
+     * @param array $pathKeys
+     *
+     * @return Collection
+     */
+    protected function getBundleValues(array $pathKeys)
+    {
         $temp = &$this->bundleMap;
 
         foreach ($pathKeys as $key) {
@@ -62,6 +79,10 @@ class Bundler
      */
     public function mapBundles()
     {
+        if (!empty($this->bundleMap)) {
+            return $this->getBundleMap();
+        }
+
         $pathCollection = $this->getPathCollection();
 
         foreach ($pathCollection as $path) {
@@ -75,31 +96,6 @@ class Bundler
         }
 
         return $this->getBundleMap();
-    }
-
-    /**
-     * Get keys from given path.
-     *
-     * @param string $path
-     *
-     * @return array
-     */
-    protected function getKeysFromPath($path)
-    {
-        $aliases = config('lang-bundler.aliases');
-
-        $autoAliases = collect($this->autoAliases)
-            ->filter(function ($value) use ($path) {
-                return $value === $path;
-            });
-
-        if (in_array($path, array_keys($aliases))) {
-            $path = $aliases[$path];
-        } elseif ($autoAliases->count() === 1) {
-            $path = 'bundles.'.$autoAliases->keys()[0];
-        }
-
-        return explode('.', $path);
     }
 
     /**
