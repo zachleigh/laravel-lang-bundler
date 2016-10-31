@@ -313,11 +313,11 @@ class UnitTest extends TestCase
     /**
      * @test
      */
-    public function it_finds_bundles_with_registered_shortcut()
+    public function it_finds_bundles_with_registered_alias()
     {
         $this->copyStubs('bundle2');
 
-        app()['config']->set('lang-bundler.shortcuts', [
+        app()['config']->set('lang-bundler.aliases', [
             'test' => 'bundles.bundle2.component1',
         ]);
 

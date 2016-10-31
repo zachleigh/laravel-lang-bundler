@@ -3,16 +3,16 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Shortcuts
+    | Aliases
     |--------------------------------------------------------------------------
     |
-    | Shortcuts make it easier to access your bundle and save you some typing.
-    | Register shortcuts in this array as key/value pairs where the key is the
-    | shortcut name and the value is the period seperated path to the bundle.
-    | Shortcut names need to be unique.
+    | Aliases make it easier to access your bundle and save you some typing.
+    | Register aliases in this array as key/value pairs where the key is the
+    | alias and the value is the period seperated path to the bundle. Alias
+    | names need to be unique.
     */
-    'shortcuts' => [
-        // 'shortcut_name' => 'path.to.bundle'
+    'aliases' => [
+        // 'alias' => 'path.to.bundle'
     ],
 
     /*

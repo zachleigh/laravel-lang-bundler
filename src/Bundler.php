@@ -82,10 +82,10 @@ class Bundler
      */
     protected function getKeysFromPath($path)
     {
-        $shortcuts = config('lang-bundler.shortcuts');
+        $aliases = config('lang-bundler.aliases');
 
-        if (in_array($path, array_keys($shortcuts))) {
-            $path = $shortcuts[$path];
+        if (in_array($path, array_keys($aliases))) {
+            $path = $aliases[$path];
         }
 
         return explode('.', $path);

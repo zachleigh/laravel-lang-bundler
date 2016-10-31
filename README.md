@@ -160,16 +160,16 @@ php artisan langb:new components.user.profile
 This would create the file lang/bundles/components/user/profile.php with an empty returned array.
 
 ### Configuration
-##### shortcuts
-To shorten the name of bundles, you can register name shortcuts in config.
+##### aliases
+To shorten the name of bundles, you can register aliases in config.
 ```php
-'shortcuts' [
-    'shortcut_name' => 'full.path.to.bundle'
+'aliases' [
+    'alias' => 'full.path.to.bundle'
 ];
 ```
-And then simply use the shortcut istead of the path in transB():
+And then simply use the alias istead of the path in transB():
 ```php
-transB('shortcut_name');
+transB('alias');
 ```
 
 ##### key_transform
@@ -218,7 +218,8 @@ return [
 ### Limitations    
 This is a brief list of the current issues that need to be resolved to make this package more useful and complete:
   - Currently does not support trans_choice(). Could implement this using parameters and namespacing.
-  - Bundle names can now be registered as shortcuts in config. This is less than ideal though because you have to register a bundle in two places. It would be better to have automatic name resolution or a way to name a bundle within the bundle.
+  - Bundle names can now be registered as aliases in config. This is less than ideal though because you have to register a bundle in two places. It would be better to have automatic name resolution or a way to name a bundle within the bundle. Maybe resolve with command that generates aliases automatically and saves them in config?
+
 
 ### Testing
 ```
