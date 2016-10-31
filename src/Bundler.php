@@ -95,7 +95,7 @@ class Bundler
 
         if (in_array($path, array_keys($aliases))) {
             $path = $aliases[$path];
-        } else if ($autoAliases->count() === 1) {
+        } elseif ($autoAliases->count() === 1) {
             $path = 'bundles.'.$autoAliases->keys()[0];
         }
 
@@ -145,7 +145,7 @@ class Bundler
     /**
      * Register file paths as auto aliases.
      *
-     * @param  Collection $pathKeys
+     * @param Collection $pathKeys
      */
     protected function registerAlias(Collection $pathKeys)
     {
