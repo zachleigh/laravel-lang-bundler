@@ -89,13 +89,37 @@ Note that parameters will be used for all items found in the bundle, leading to 
 
 ### Configuation
 ##### key_transform
-If you wish to transform lang file keys to snake_case, StudlyCase, or camelCase, set `key_transform` to 'snake_case', 'studly_case', or 'camel_case'. Default value is 'none'.
+If you wish to transform lang file keys to snake_case, StudlyCase, or camelCase, set `key_transform` to 'snake_case', 'studly_case', or 'camel_case'. Default value is 'none'.   
+
+##### global_key_namespace
+If you keep all your translations in a single file, you can set `global_key_namespace` to the name of the file to save yourself some typing. For example, if all your translations are in a file called 'translations.php', you would have to register a bundle like this:
+```php
+return [
+    'bundle_name' => [
+        'translations.home',
+        'translations.navigation',
+        'translations.menu',
+        'translations.login'
+    ];
+];
+```
+However, if you set `global_key_namespace` to 'translations', you could register it like this:
+```php
+return [
+    'bundle_name' => [
+        'home',
+        'navigation',
+        'menu',
+        'login'
+    ];
+];
+```
 
 ### Limitations    
 This is a brief list of the current issues that need to be resolved to make this package more useful and complete:
   - Passed parameter names are used for all items in bundle leading to naming conflicts. Need to namespace them: 'key.parameter'
   - Currently does not support trans_choice(). Could also use namespacing here
-  - Bundle names can get extremely long. Naming shortcuts could be registered in config to resolve this. Also could allow the entire package to have a shortcut (if you use a single lang file) or bundles to have their own shortcuts.
+  - Bundle names can get extremely long. Naming shortcuts could be registered in config to resolve this.
 
 ### Contributing
 Contributions are more than welcome. Fork, improve and make a pull request. For bugs, ideas for improvement or other, please create an [issue](https://github.com/zachleigh/laravel-lang-bundler/issues).

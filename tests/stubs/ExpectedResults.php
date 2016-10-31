@@ -195,4 +195,20 @@ trait ExpectedResults
             'top'  => 'トップ',
         ];
     }
+
+    /**
+     * Expected results for bundle7 translations.
+     *
+     * @return array
+     */
+    private function bundle7()
+    {
+        return [
+            'welcome' => 'Welcome',
+            'signup' => 'Signup',
+            'login' => 'Login',
+            'home' => 'Home',
+            'top' => 'Top',
+        ];
+    }
 }

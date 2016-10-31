@@ -22,6 +22,8 @@ class Translator
         return $bundle->mapWithKeys(function ($id) use ($parameters, $domain, $locale) {
             $key = $this->getKey($id);
 
+            $id = $this->prefixId($id);
+
             $value = app('translator')->trans($id, $parameters, $domain, $locale);
 
             return [$key => $value];
@@ -46,5 +48,23 @@ class Translator
         }
 
         return $transformMethod($key);
+    }
+
+    /**
+     * Prefix the translation id with global_key_namespace, if set.
+     *
+     * @param  string $id
+     *
+     * @return string
+     */
+    protected function prefixId($id)
+    {
+        $prefix = config('lang-bundler.global_key_namespace');
+
+        if (!empty($prefix)) {
+            return $prefix.'.'.$id;
+        }
+
+        return $id;
     }
 }

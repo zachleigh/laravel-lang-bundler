@@ -265,10 +265,31 @@ class UnitTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function it_adds_a_key_prefix()
+    {
+        $this->copyStubs('bundle7');
+
+        $this->copyTranslations();
+
+        app()['config']->set('lang-bundler.global_key_namespace', 'translations');
+
+        $values = $this->bundler->getBundleValues('bundles.bundle7');
+
+        $translations = $this->translator->translateBundle($values);
+
+        $expected = $this->getExpected('bundle7');
+
+        $this->assertEquals($expected, $translations->all());
+    }
+
+    /**
      * Perform key transformation test.
      *
      * @param string $case
      * @param array  $expected
+     * @param string $bundle
      */
     protected function transformTest($case, $expected, $bundle = 'bundle5')
     {
