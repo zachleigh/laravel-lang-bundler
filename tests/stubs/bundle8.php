@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'translations.welcome',
-    'translations.signup',
-    'translations.login',
-    'translations.home',
-    'translations.top',
+    'user.welcome_user',
+    'user.message_to',
+    'user.invite_from'
 ];

@@ -228,6 +228,32 @@ class UnitTest extends TestCase
     /**
      * @test
      */
+    public function parameters_can_be_namespaced()
+    {
+        $this->copyStubs('bundle8');
+
+        $this->copyTranslations();
+
+        $values = $this->bundler->getBundleValues('bundles.bundle8');
+
+        $translations = $this->translator->translateBundle($values, [
+            'welcome_user.user' => 'Bob',
+            'message_to.user' => 'Sally',
+            'invite_from.user' => 'George'
+        ]);
+
+        $expected = [
+            "welcome_user" => "Welcome Bob",
+            "message_to" => "You sent a message to Sally",
+            "invite_from" => "You have an invite from George"
+        ];
+
+        $this->assertEquals($expected, $translations->all());
+    }
+
+    /**
+     * @test
+     */
     public function it_transforms_keys_to_study_case()
     {
         $expected = [

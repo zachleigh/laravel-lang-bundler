@@ -85,7 +85,32 @@ Like with the standard trans() function, you may pass parameters to the transB()
 ```php
 transB('bundles.components.bundle_name', ['parameterName' => $value]);
 ```
-Note that parameters will be used for all items found in the bundle, leading to potential naming conflicts. Hopefully this issue will be resolved int he future.
+If your bundle has conflicting parameter names, you can namespace them. In this example, three values require a `user` parameter.     
+
+user.php translation file:
+```php
+return [
+    'welcome_user' => 'Welcome :user',
+    'message_to'   => 'You sent a message to :user',
+    'invite_from'  => 'You have an invite from :user'
+];
+```
+Bundle file:
+```php
+return [
+    'user.welcome_user',
+    'user.message_to',
+    'user.invite_from'
+];
+```
+Avoid the naming conflict by namespacing your parameters when passing them to transB():
+```html
+transB('bundle_name', [
+    'welcome_user.user' => 'Bob',
+    'message_to.user' => 'Sally',
+    'invite_from.user' => 'George'
+])
+```
 
 ### Configuation
 ##### shortcuts
@@ -125,7 +150,6 @@ return [
 
 ### Limitations    
 This is a brief list of the current issues that need to be resolved to make this package more useful and complete:
-  - Passed parameter names are used for all items in bundle leading to naming conflicts. Need to namespace them: 'key.parameter'
   - Currently does not support trans_choice(). Could also use namespacing here
   - Bundle names can now be registered as shortcuts in config. This is less than ideal though because you have to register a bundle in two places. It would be better to have automatic name resolution or a way to name a bundle within the bundle.
 

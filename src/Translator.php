@@ -20,9 +20,13 @@ class Translator
         $locale = null
     ) {
         return $bundle->mapWithKeys(function ($id) use ($parameters, $domain, $locale) {
-            $key = $this->getKey($id);
+            $namespace = collect(explode('.', $id))->last();
+
+            $key = $this->getKey($namespace);
 
             $id = $this->prefixId($id);
+
+            $parameters = $this->getNamespacedParameters($parameters, $namespace);
 
             $value = app('translator')->trans($id, $parameters, $domain, $locale);
 
@@ -33,15 +37,13 @@ class Translator
     /**
      * Get key for translation value.
      *
-     * @param string $id
+     * @param string $key
      *
      * @return string
      */
-    protected function getKey($id)
+    protected function getKey($key)
     {
         $transformMethod = config('lang-bundler.key_transform');
-
-        $key = collect(explode('.', $id))->last();
 
         if ($transformMethod === 'none') {
             return $key;
@@ -66,5 +68,18 @@ class Translator
         }
 
         return $id;
+    }
+
+    protected function getNamespacedParameters($parameters, $namespace)
+    {
+        return collect($parameters)->mapWithKeys(function ($value, $key) use ($namespace) {
+            $keyArray = explode('.', $key);
+
+            if (count($keyArray) === 2 && $keyArray[0] === $namespace) {
+                $key = $keyArray[1];
+            }
+
+            return [$key => $value];
+        })->all();
     }
 }
