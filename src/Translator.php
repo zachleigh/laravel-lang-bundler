@@ -53,7 +53,7 @@ class Translator
     /**
      * Prefix the translation id with global_key_namespace, if set.
      *
-     * @param  string $id
+     * @param string $id
      *
      * @return string
      */

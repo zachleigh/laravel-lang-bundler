@@ -73,6 +73,13 @@ class Bundler
         return $this->getBundleMap();
     }
 
+    /**
+     * Get keys from given path.
+     *
+     * @param string $path
+     *
+     * @return array
+     */
     protected function getKeysFromPath($path)
     {
         $shortcuts = config('lang-bundler.shortcuts');
