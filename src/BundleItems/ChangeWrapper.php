@@ -3,7 +3,7 @@
 namespace LaravelLangBundler\BundleItems;
 
 class ChangeWrapper extends ItemWrapper
-{ 
+{
     /**
      * Alter key and return.
      *

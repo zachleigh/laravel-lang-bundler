@@ -3,7 +3,6 @@
 namespace LaravelLangBundler\tests\Unit;
 
 use LaravelLangBundler\Bundle;
-use LaravelLangBundler\Translation;
 use LaravelLangBundler\tests\TestCase;
 use LaravelLangBundler\BundleItems\CallbackWrapper;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
@@ -25,7 +24,7 @@ class BundleItemWrapperTest extends TestCase
             if ($key > 2) {
                 break;
             }
-            
+
             $this->assertInstanceOf(CallbackWrapper::class, $value);
         }
     }
@@ -42,7 +41,7 @@ class BundleItemWrapperTest extends TestCase
         $bundle = new Bundle('bundle10', $this->bundleMap);
 
         $this->translator->translateBundle($bundle, [
-            'user' => 'Bob'
+            'user' => 'Bob',
         ]);
 
         $values = $bundle->getValues()->map(function ($value) {

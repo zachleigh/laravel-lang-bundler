@@ -2,15 +2,15 @@
 
 return [
     bundleItem('user.welcome_user', 'key_callback', [
-        'callback' => 'ucfirst'
+        'callback' => 'ucfirst',
     ]),
     bundleItem('user.message_to', 'value_callback', [
-        'callback' => 'strtoupper'
+        'callback' => 'strtoupper',
     ]),
     bundleItem('user.invite_from', 'key_callback', [
-        'callback' => 'studly_case'
+        'callback' => 'studly_case',
     ]),
     bundleItem('user.invite_from', 'key_change', [
-        'new' => 'newKey'
+        'new' => 'newKey',
     ]),
 ];
