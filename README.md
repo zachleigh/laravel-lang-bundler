@@ -153,11 +153,11 @@ transB('bundle_name', [
 
 ### Advanced Usage
 #### Modify return keys and values
-To modify the key and value in the returned translation array, use the bundleItem() helper ona specific bundle item.   
+To modify the key and value in the returned translation array, use the bundleItem() helper on a specific bundle item.   
 ```php
 bundleItem($id, $type, $parameters = []);
 ```
-The $id is the lang key. $type must be in the following format: 'target_type'. 'target' declares what item is to be affected by the modification and can be set to either 'value', 'key', or 'both'. $parameters is an array of parameters to be sent to the class that performs the modification.    
+$id is the lang key. $type must be in the following format: 'target_type'. 'target' declares what item is to be affected by the modification and can be set to either 'value', 'key', or 'both'. 'type' declares the type of modification (callback, change etc.). $parameters is an array of parameters to be sent to the class that performs the modification.    
 
 If using the same example as above we wanted to convert the 'welcome_user' value to all caps, we could accomplish it by using the bundleItem() helper function in the bundle file.     
 user.php translation file:
