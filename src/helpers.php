@@ -2,7 +2,7 @@
 
 use LaravelLangBundler\BundleItem;
 
-if (! function_exists('transB')) {
+if (!function_exists('transB')) {
     /**
      * Translate the given message.
      *
@@ -23,13 +23,13 @@ if (! function_exists('transB')) {
     }
 }
 
-if (! function_exists('bundleItem')) {
+if (!function_exists('bundleItem')) {
     /**
      * Create a BundleItem class directly from the bundle registration file.
      *
-     * @param  string $id
-     * @param  string $type       Filename_affected
-     * @param  array  $parameters
+     * @param string $id
+     * @param string $type       Filename_affected
+     * @param array  $parameters
      *
      * @return BundleItem
      */

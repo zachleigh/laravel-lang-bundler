@@ -2,7 +2,7 @@
 
 namespace LaravelLangBundler\BundleItems;
 
-class WrapperTemplate extends ItemWrapper
+class StubWrapper extends ItemWrapper
 {
     /*
     |--------------------------------------------------------------------------
@@ -11,11 +11,11 @@ class WrapperTemplate extends ItemWrapper
     |
     | These classes are used to modify the returned key and value for a specific
     | bundle item. The classname must end with 'Wrapper' and both key and value
-    | logic should be included. If one is not necessary, simply return the 
+    | logic should be included. If one is not necessary, simply return the
     | $key/$value. Parameters for wrapper classes are stored on the parent as
     | $wrapperParameters.
     */
-   
+
     /**
      * Alter key and return.
      *
@@ -25,7 +25,6 @@ class WrapperTemplate extends ItemWrapper
      */
     public function key($key)
     {
-
     }
 
     /**
@@ -37,6 +36,5 @@ class WrapperTemplate extends ItemWrapper
      */
     public function value($value)
     {
-        
     }
 }

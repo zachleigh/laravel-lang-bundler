@@ -220,10 +220,10 @@ trait ExpectedResults
     private function bundle10()
     {
         return [
-            "Welcome_user" => "Welcome :user",
-            "message_to" => "YOU SENT A MESSAGE TO :USER",
-            "InviteFrom" => "You have an invite from :user",
-            "newKey" => "You have an invite from :user",
+            'Welcome_user' => 'Welcome :user',
+            'message_to'   => 'YOU SENT A MESSAGE TO :USER',
+            'InviteFrom'   => 'You have an invite from :user',
+            'newKey'       => 'You have an invite from :user',
         ];
     }
 }

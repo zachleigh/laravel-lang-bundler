@@ -31,7 +31,7 @@ class CallbackWrapper extends ItemWrapper
     /**
      * Call the given callback.
      *
-     * @param  callable $string
+     * @param callable $string
      *
      * @return string
      */
