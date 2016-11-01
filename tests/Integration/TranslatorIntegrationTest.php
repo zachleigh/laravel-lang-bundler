@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelLangBundler\tests\Unit;
+namespace LaravelLangBundler\tests\Integration;
 
 use LaravelLangBundler\Bundle;
 use LaravelLangBundler\tests\TestCase;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
 
-class TranslatorUnitTest extends TestCase
+class TranslatorIntegrationTest extends TestCase
 {
     use ExpectedResults;
 

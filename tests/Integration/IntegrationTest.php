@@ -1,8 +1,9 @@
 <?php
 
-namespace LaravelLangBundler\tests;
+namespace LaravelLangBundler\tests\Integration;
 
 use LaravelLangBundler\LangBundler;
+use LaravelLangBundler\tests\TestCase;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
 
 class IntegrationTest extends TestCase

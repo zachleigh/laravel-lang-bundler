@@ -18,7 +18,6 @@ class TestCase extends IlluminateTestCase
      */
     protected $bundler;
 
-
     /**
      * Translator instance.
      *
