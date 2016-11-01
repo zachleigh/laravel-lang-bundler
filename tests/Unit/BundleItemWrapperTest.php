@@ -74,6 +74,18 @@ class BundleItemWrapperTest extends TestCase
     /**
      * @test
      */
+    public function wrapper_callback_transforms_both()
+    {
+        extract($this->testWrapper());
+
+        $this->assertEquals('MESSAGE_TO', $keys[5]);
+
+        $this->assertEquals('YOU SENT A MESSAGE TO :USER', $values[5]);
+    }
+
+    /**
+     * @test
+     */
     public function wrapper_change_changes_key()
     {
         extract($this->testWrapper());

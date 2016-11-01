@@ -14,4 +14,7 @@ return [
         'new' => 'newKey',
     ]),
     bundleItem('home.months', 'value_values'),
+    bundleItem('user.message_to', 'both_callback', [
+        'callback' => 'strtoupper',
+    ]),
 ];

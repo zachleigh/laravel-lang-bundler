@@ -153,7 +153,13 @@ transB('bundle_name', [
 
 ### Advanced Usage
 #### Modify return keys and values
-It is possible to modify the key and value in the returned translation array. If using the same example as above we wanted to convert the 'welcome_user' value to all caps, we could accomplish it by using the bundleItem() helper function in the bundle file.     
+To modify the key and value in the returned translation array, use the bundleItem() helper ona specific bundle item.   
+```php
+bundleItem($id, $type, $parameters = []);
+```
+The $id is the lang key. $type must be in the following format: 'target_type'. 'target' declares what item is to be affected by the modification and can be set to either 'value', 'key', or 'both'. $parameters is an array of parameters to be sent to the class that performs the modification.    
+
+If using the same example as above we wanted to convert the 'welcome_user' value to all caps, we could accomplish it by using the bundleItem() helper function in the bundle file.     
 user.php translation file:
 ```php
 return [
@@ -172,11 +178,7 @@ return [
     'user.invite_from'
 ];
 ```
-We wrap the bundle key 'user.welcome_user' in the bundleItem() global function. The function takes the following arguments:   
-```php   
-bundleItem($id, $type, $parameters = []);
-```
-So in the example, we pass the translation key ($id), the type (perform a 'callback' on the returned 'value'), and an array of parameters, in the case of the callback modifier, it requires the name of the callback: ['callback' => 'strtoupper']. This returns the following values (assuming a non-namespaced user variable with the value 'Bob'):
+We wrap the bundle key 'user.welcome_user' in the bundleItem() global function. We pass the translation key ($id), the type (perform a 'callback' on the returned 'value'), and an array of parameters, in the case of the callback modifier, it requires the name of the callback: ['callback' => 'strtoupper']. This returns the following values (assuming a non-namespaced user variable with the value 'Bob'):
 ```
 [
     'welcome_user' => 'WELCOME BOB',

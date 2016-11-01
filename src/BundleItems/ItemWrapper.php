@@ -7,7 +7,7 @@ use LaravelLangBundler\BundleItem;
 abstract class ItemWrapper extends BundleItem
 {
     /**
-     * Affect 'key' or 'value'.
+     * Affect 'key', 'value' or 'both'.
      *
      * @var string
      */
@@ -43,7 +43,7 @@ abstract class ItemWrapper extends BundleItem
      */
     public function getKey()
     {
-        if ($this->affect === 'key') {
+        if ($this->affect === 'key' || $this->affect === 'both') {
             return $this->key($this->key);
         }
 
@@ -57,7 +57,7 @@ abstract class ItemWrapper extends BundleItem
      */
     public function getValue()
     {
-        if ($this->affect === 'value') {
+        if ($this->affect === 'value' || $this->affect === 'both') {
             return $this->value($this->value);
         }
 
