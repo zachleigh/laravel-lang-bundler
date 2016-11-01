@@ -41,9 +41,7 @@ class LangBundler
      */
     public function trans($id, $parameters = [], $domain = 'messages', $locale = null)
     {
-        $bundle = new Bundle($id);
-
-        $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle($id, $this->bundleMap);
 
         if ($bundle->hasNoValues()) {
             return app('translator')->trans($id, $parameters, $domain, $locale);

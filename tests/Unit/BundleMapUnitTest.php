@@ -90,13 +90,11 @@ class BundleMapUnitTest extends TestCase
     {
         $this->copyStubs('bundle1');
 
-        $bundle = new Bundle('bundles.bundle1');
-
-        $values = $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.bundle1', $this->bundleMap);
 
         $expected = $this->getExpected('bundle1', true);
 
-        $this->assertEquals($expected, $values->all());
+        $this->assertEquals($expected, $bundle->getValuesArray());
     }
 
     /**
@@ -106,13 +104,11 @@ class BundleMapUnitTest extends TestCase
     {
         $this->copyStubs('bundle2');
 
-        $bundle = new Bundle('bundles.bundle2.component2');
-
-        $values = $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.bundle2.component2', $this->bundleMap);
 
         $expected = $this->getExpected('bundle2', true)['component2'];
 
-        $this->assertEquals($expected, $values->all());
+        $this->assertEquals($expected, $bundle->getValuesArray());
     }
 
     /**
@@ -122,13 +118,11 @@ class BundleMapUnitTest extends TestCase
     {
         $this->copyStubs(['bundle1', 'bundle2']);
 
-        $bundle = new Bundle('bundles.bundle2.component1');
-
-        $values = $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.bundle2.component1', $this->bundleMap);
 
         $expected = $this->getExpected('bundle2', true)['component1'];
 
-        $this->assertEquals($expected, $values->all());
+        $this->assertEquals($expected, $bundle->getValuesArray());
     }
 
     /**
@@ -138,13 +132,11 @@ class BundleMapUnitTest extends TestCase
     {
         $this->copyStubs('components');
 
-        $bundle = new Bundle('bundles.components.bundle3.forum.component3');
-
-        $values = $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.components.bundle3.forum.component3', $this->bundleMap);
 
         $expected = $this->getExpected('bundle3', true)['forum']['component3'];
 
-        $this->assertEquals($expected, $values->all());
+        $this->assertEquals($expected, $bundle->getValuesArray());
     }
 
     /**
@@ -154,13 +146,11 @@ class BundleMapUnitTest extends TestCase
     {
         $this->copyStubs('components');
 
-        $bundle = new Bundle('bundles.components.sub-components.bundle4');
-
-        $values = $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.components.sub-components.bundle4', $this->bundleMap);
 
         $expected = $this->getExpected('bundle4', true);
 
-        $this->assertEquals($expected, $values->all());
+        $this->assertEquals($expected, $bundle->getValuesArray());
     }
 
     /**
@@ -170,11 +160,9 @@ class BundleMapUnitTest extends TestCase
     {
         $this->copyStubs('components');
 
-        $bundle = new Bundle('bundles.components.none');
+        $bundle = new Bundle('bundles.components.none', $this->bundleMap);
 
-        $values = $this->bundleMap->setBundleValues($bundle);
-
-        $this->assertEquals([], $values->all());
+        $this->assertEquals([], $bundle->getValuesArray());
     }
 
     /**
@@ -188,13 +176,11 @@ class BundleMapUnitTest extends TestCase
             'test' => 'bundles.bundle2.component1',
         ]);
 
-        $bundle = new Bundle('test');
-
-        $values = $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('test', $this->bundleMap);
 
         $expected = $this->getExpected('bundle2', true)['component1'];
 
-        $this->assertEquals($expected, $values->all());
+        $this->assertEquals($expected, $bundle->getValuesArray());
     }
 
     /**
@@ -204,12 +190,10 @@ class BundleMapUnitTest extends TestCase
     {
         $this->copyStubs('components');
 
-        $bundle = new Bundle('bundle4');
-
-        $values = $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundle4', $this->bundleMap);
 
         $expected = $this->getExpected('bundle4', true);
 
-        $this->assertEquals($expected, $values->all());
+        $this->assertEquals($expected, $bundle->getValuesArray());
     }
 }

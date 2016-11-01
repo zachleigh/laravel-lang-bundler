@@ -19,9 +19,7 @@ class TranslatorUnitTest extends TestCase
 
         $this->copyTranslations();
 
-        $bundle = new Bundle('bundles.bundle2.component1');
-
-        $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.bundle2.component1', $this->bundleMap);
 
         $translations = $this->translator->translateBundle($bundle);
 
@@ -41,9 +39,7 @@ class TranslatorUnitTest extends TestCase
 
         app()->setLocale('ja');
 
-        $bundle = new Bundle('bundles.bundle2.component1');
-
-        $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.bundle2.component1', $this->bundleMap);
 
         $translations = $this->translator->translateBundle($bundle);
 
@@ -61,9 +57,7 @@ class TranslatorUnitTest extends TestCase
 
         $this->copyTranslations();
 
-        $bundle = new Bundle('bundles.bundle5');
-
-        $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.bundle5', $this->bundleMap);
 
         $translations = $this->translator->translateBundle(
             $bundle,
@@ -87,9 +81,7 @@ class TranslatorUnitTest extends TestCase
 
         $this->copyTranslations();
 
-        $bundle = new Bundle('bundles.bundle8');
-
-        $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.bundle8', $this->bundleMap);
 
         $translations = $this->translator->translateBundle($bundle, [
             'welcome_user.user' => 'Bob',
@@ -156,9 +148,7 @@ class TranslatorUnitTest extends TestCase
 
         app()['config']->set('lang-bundler.global_key_namespace', 'translations');
 
-        $bundle = new Bundle('bundles.bundle7');
-
-        $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.bundle7', $this->bundleMap);
 
         $translations = $this->translator->translateBundle($bundle);
 
@@ -182,9 +172,7 @@ class TranslatorUnitTest extends TestCase
 
         app()['config']->set('lang-bundler.key_transform', $case);
 
-        $bundle = new Bundle('bundles.'.$bundleName);
-
-        $this->bundleMap->setBundleValues($bundle);
+        $bundle = new Bundle('bundles.'.$bundleName, $this->bundleMap);
 
         $translations = $this->translator->translateBundle(
             $bundle,

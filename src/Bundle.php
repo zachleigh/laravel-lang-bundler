@@ -14,6 +14,13 @@ class Bundle
     protected $id;
 
     /**
+     * BundleMap instance.
+     *
+     * @var BundleMap
+     */
+    protected $bundleMap;
+
+    /**
      * Array of path keys.
      *
      * @var array
@@ -25,14 +32,14 @@ class Bundle
      *
      * @var string
      */
-    protected $path;
+    protected $path = '';
 
     /**
      * Path namespace.
      *
      * @var string
      */
-    protected $namespace;
+    protected $namespace = '';
 
     /**
      * Collection of lang values.
@@ -46,10 +53,14 @@ class Bundle
      *
      * @param string $id
      */
-    public function __construct($id)
+    public function __construct($id, BundleMap $bundleMap)
     {
         $this->id = $id;
         $this->path = $id;
+
+        $this->bundleMap = $bundleMap;
+
+        $this->getValuesFromMap();
     }
 
     /**
@@ -83,15 +94,13 @@ class Bundle
     }
 
     /**
-     * Set values collection on object.
+     * Return array of values.
      *
-     * @param Collection $values
-     *
-     * @return Collection
+     * @return array
      */
-    public function setValues(Collection $values)
+    public function getValuesArray()
     {
-        return $this->values = $values;
+        return $this->values->all();
     }
 
     /**
@@ -105,18 +114,6 @@ class Bundle
     }
 
     /**
-     * Build pathKeys array and set namespace.
-     *
-     * @param array $autoAliases
-     */
-    public function buildKeys(array $autoAliases = [])
-    {
-        $this->getKeysFromId($autoAliases);
-
-        $this->namespace = array_shift($this->pathKeys);
-    }
-
-    /**
      * Return true if namespace is valid bundle namespace.
      *
      * @return bool
@@ -127,17 +124,87 @@ class Bundle
     }
 
     /**
+     * Set the namespace on the object.
+     *
+     * @param string $namespace
+     */
+    protected function setNamespace($namespace)
+    {
+        $this->namespace = $namespace;
+    }
+
+    /**
+     * Set pathKeys on object.
+     *
+     * @param array $pathKeys
+     */
+    protected function setPathKeys(array $pathKeys)
+    {
+        $this->pathKeys = $pathKeys;
+    }
+
+    /**
+     * Set values collection on object.
+     *
+     * @param Collection $values
+     *
+     * @return Collection
+     */
+    protected function setValues(Collection $values)
+    {
+        return $this->values = $values;
+    }
+
+    /**
+     * Get bundle values for given path.
+     *
+     * @param Bundle $bundle
+     *
+     * @return Collection
+     */
+    protected function getValuesFromMap()
+    {
+        if ($this->bundleMap->bundleMapIsEmpty()) {
+            $this->bundleMap->mapBundles();
+        }
+
+        $this->buildKeys();
+
+        if (!$this->hasValidNamespace()) {
+            $this->setValues(collect([]));
+        } else {
+            $values = $this->bundleMap->getBundleValues($this->getPathKeys());
+
+            $this->setValues($values);
+        }
+    }
+
+    /**
+     * Build pathKeys array and set namespace.
+     *
+     * @param array $autoAliases
+     */
+    protected function buildKeys()
+    {
+        $pathKeys = $this->getKeysFromId();
+
+        $this->setNamespace(array_shift($pathKeys));
+
+        $this->setPathKeys($pathKeys);
+    }
+
+    /**
      * Get keys from id.
      *
      * @param array $autoAliases
      *
      * @return array
      */
-    protected function getKeysFromId(array $autoAliases = [])
+    protected function getKeysFromId()
     {
         $aliases = config('lang-bundler.aliases');
 
-        $autoAliases = collect($autoAliases)
+        $autoAliases = collect($this->bundleMap->getAutoAliases())
             ->filter(function ($value) {
                 return $value === $this->id;
             });
@@ -148,6 +215,6 @@ class Bundle
             $this->path = 'bundles.'.$autoAliases->keys()[0];
         }
 
-        $this->pathKeys = explode('.', $this->path);
+        return explode('.', $this->path);
     }
 }

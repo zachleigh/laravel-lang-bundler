@@ -21,27 +21,33 @@ class BundleMap
     protected $autoAliases = [];
 
     /**
-     * Get bundle values for given path.
+     * Return bundle map.
      *
-     * @param Bundle $bundle
-     *
-     * @return Collection
+     * @return array
      */
-    public function setBundleValues(Bundle $bundle)
+    public function getBundleMap()
     {
-        if (empty($this->bundleMap)) {
-            $this->mapBundles();
-        }
+        return $this->bundleMap;
+    }
 
-        $bundle->buildKeys($this->autoAliases);
+    /**
+     * Get auto-alias array.
+     *
+     * @return array
+     */
+    public function getAutoAliases()
+    {
+        return $this->autoAliases;
+    }
 
-        if (!$bundle->hasValidNamespace()) {
-            return $bundle->setValues(collect([]));
-        }
-
-        $values = $this->getBundleValues($bundle->getPathKeys());
-
-        return $bundle->setValues($values);
+    /**
+     * Return true if bundleMap is empty.
+     *
+     * @return boolean
+     */
+    public function bundleMapIsEmpty()
+    {
+        return empty($this->bundleMap);
     }
 
     /**
@@ -51,7 +57,7 @@ class BundleMap
      *
      * @return Collection
      */
-    protected function getBundleValues(array $pathKeys)
+    public function getBundleValues(array $pathKeys)
     {
         $temp = &$this->bundleMap;
 
@@ -60,16 +66,6 @@ class BundleMap
         }
 
         return collect($temp);
-    }
-
-    /**
-     * Return bundle map.
-     *
-     * @return array
-     */
-    public function getBundleMap()
-    {
-        return $this->bundleMap;
     }
 
     /**
