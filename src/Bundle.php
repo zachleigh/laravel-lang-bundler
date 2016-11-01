@@ -106,7 +106,7 @@ class Bundle
     /**
      * Return true if bundle contains no trans values.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasNoValues()
     {

@@ -90,7 +90,7 @@ class Translation
      * Set only valid parameters. If namespaced, only parameters with
      * translation namespace will be set.
      *
-     * @param array  $parameters
+     * @param array $parameters
      */
     public function setParameters($parameters)
     {
@@ -99,7 +99,7 @@ class Translation
 
             if (count($keyArray) === 2 && $keyArray[0] === $this->getNamespace()) {
                 $key = $keyArray[1];
-            } else if (count($keyArray) === 2 && $keyArray[0] !== $this->getNamespace()) {
+            } elseif (count($keyArray) === 2 && $keyArray[0] !== $this->getNamespace()) {
                 return;
             }
 
