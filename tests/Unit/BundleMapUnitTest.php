@@ -92,9 +92,11 @@ class BundleMapUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.bundle1', $this->bundleMap);
 
+        $values = $this->bundleMap->getBundleValues($bundle->getPathKeys())->all();
+
         $expected = $this->getExpected('bundle1', true);
 
-        $this->assertEquals($expected, $bundle->getValuesArray());
+        $this->assertEquals($expected, $values);
     }
 
     /**
@@ -106,9 +108,11 @@ class BundleMapUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.bundle2.component2', $this->bundleMap);
 
+        $values = $this->bundleMap->getBundleValues($bundle->getPathKeys())->all();
+
         $expected = $this->getExpected('bundle2', true)['component2'];
 
-        $this->assertEquals($expected, $bundle->getValuesArray());
+        $this->assertEquals($expected, $values);
     }
 
     /**
@@ -120,9 +124,11 @@ class BundleMapUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.bundle2.component1', $this->bundleMap);
 
+        $values = $this->bundleMap->getBundleValues($bundle->getPathKeys())->all();
+
         $expected = $this->getExpected('bundle2', true)['component1'];
 
-        $this->assertEquals($expected, $bundle->getValuesArray());
+        $this->assertEquals($expected, $values);
     }
 
     /**
@@ -134,9 +140,11 @@ class BundleMapUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.components.bundle3.forum.component3', $this->bundleMap);
 
+        $values = $this->bundleMap->getBundleValues($bundle->getPathKeys())->all();
+
         $expected = $this->getExpected('bundle3', true)['forum']['component3'];
 
-        $this->assertEquals($expected, $bundle->getValuesArray());
+        $this->assertEquals($expected, $values);
     }
 
     /**
@@ -148,9 +156,11 @@ class BundleMapUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.components.sub-components.bundle4', $this->bundleMap);
 
+        $values = $this->bundleMap->getBundleValues($bundle->getPathKeys())->all();
+
         $expected = $this->getExpected('bundle4', true);
 
-        $this->assertEquals($expected, $bundle->getValuesArray());
+        $this->assertEquals($expected, $values);
     }
 
     /**
@@ -162,7 +172,9 @@ class BundleMapUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.components.none', $this->bundleMap);
 
-        $this->assertEquals([], $bundle->getValuesArray());
+        $values = $this->bundleMap->getBundleValues($bundle->getPathKeys())->all();
+
+        $this->assertEquals([], $values);
     }
 
     /**
@@ -178,9 +190,11 @@ class BundleMapUnitTest extends TestCase
 
         $bundle = new Bundle('test', $this->bundleMap);
 
+        $values = $this->bundleMap->getBundleValues($bundle->getPathKeys())->all();
+
         $expected = $this->getExpected('bundle2', true)['component1'];
 
-        $this->assertEquals($expected, $bundle->getValuesArray());
+        $this->assertEquals($expected, $values);
     }
 
     /**
@@ -192,8 +206,10 @@ class BundleMapUnitTest extends TestCase
 
         $bundle = new Bundle('bundle4', $this->bundleMap);
 
+        $values = $this->bundleMap->getBundleValues($bundle->getPathKeys())->all();
+
         $expected = $this->getExpected('bundle4', true);
 
-        $this->assertEquals($expected, $bundle->getValuesArray());
+        $this->assertEquals($expected, $values);
     }
 }

@@ -59,6 +59,8 @@ class BundleMap
      */
     public function getBundleValues(array $pathKeys)
     {
+        $this->mapBundles();
+        
         $temp = &$this->bundleMap;
 
         foreach ($pathKeys as $key) {
