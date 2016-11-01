@@ -104,4 +104,20 @@ class IntegrationTest extends TestCase
 
         $this->assertEquals($expected, $translations->all());
     }
+
+    /**
+     * @test
+     */
+    public function helper_function_works_with_bundle_item_wrapper()
+    {
+        $this->copyStubs('bundle10');
+
+        $this->copyTranslations();
+
+        $translations = transB('bundle10')->take(4);
+
+        $expected = $this->getExpected('bundle10');
+
+        $this->assertEquals($expected, $translations->all());
+    }
 }

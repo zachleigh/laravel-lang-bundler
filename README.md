@@ -172,7 +172,7 @@ return [
     'user.invite_from'
 ];
 ```
-We wrap the bundle key ('user.welcome_user') in the bundleItem() global function. The function takes the following arguments:   
+We wrap the bundle key 'user.welcome_user' in the bundleItem() global function. The function takes the following arguments:   
 ```php   
 bundleItem($id, $type, $parameters = []);
 ```
@@ -183,6 +183,7 @@ So in the example, we pass the translation key ($id), the type (perform a 'callb
     'message_to'   => 'You sent a message to Bob',
     'invite_from'  => 'You have an invite from Bob'
 ];
+```
 
 If we wanted to do the same to the key, we could do this:
 ```php
@@ -197,11 +198,19 @@ return [
 
 ##### Available modifiers
 ###### callback
-Perform a callback on a key or value.
+Perform a callback on a key or value. Requires a 'callback' parameter.
 ```php
-    bundleItem('user.welcome_user', 'value_callback', [
-        'callback' => 'ucfirst'
-    ]),
+bundleItem('user.welcome_user', 'value_callback', [
+    'callback' => 'ucfirst'
+]),
+```
+
+###### change
+Change a key to a new value. Does nothing to values. Requires 'new' parameter.
+```php
+bundleItem('user.invite_from', 'key_change', [
+    'new' => 'newKey'
+]),
 ```
 
 ##### Creating your own modifier
@@ -225,7 +234,8 @@ Simply create a class that extends LaravelLangBundler\BundleItems\ItemWrapper. T
      */
     abstract public function value($value);
 ```
-The same class is used to modify both the value and key. Define your modification and return the desired key/value.
+The same class is used to modify both the value and key. Define your modification and return the desired key/value.   
+To make it easier, there is a template file at LaravelLangBundler\BundleItems\WrapperTemplate.php.
 
 ### Commands
 ##### php artisan langb:start
@@ -269,6 +279,9 @@ return [
     'inviteFrom' => 'You have an invitation from user!',
 ];
 ```
+Many other simple string functions (ucfirst, strtoupper, etc.) also work.   
+
+key_transform is global and will transform all keys in your project. If you wish to transform a single key, see [modify return keys and values](#modify-return-keys-and-values).
 
 ##### global_key_namespace
 If you keep all your translations in a single file, you can set `global_key_namespace` to the name of the file to save yourself some typing. For example, if all your translations are in a file called 'translations.php', you would have to register a bundle like this:

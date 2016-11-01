@@ -15,13 +15,17 @@ class BundleItemWrapperTest extends TestCase
     /**
      * @test
      */
-    public function it_creates_translation_classes()
+    public function it_creates_bundle_item_classes()
     {
         $this->copyStubs('bundle10');
 
         $bundle = new Bundle('bundle10', $this->bundleMap);
 
-        foreach ($bundle->getValues() as $value) {
+        foreach ($bundle->getValues() as $key => $value) {
+            if ($key > 2) {
+                break;
+            }
+            
             $this->assertInstanceOf(CallbackWrapper::class, $value);
         }
     }
@@ -55,7 +59,7 @@ class BundleItemWrapperTest extends TestCase
     /**
      * @test
      */
-    public function translation_callback_transforms_keys()
+    public function wrapper_callback_transforms_keys()
     {
         $this->copyStubs('bundle10');
 
@@ -75,7 +79,7 @@ class BundleItemWrapperTest extends TestCase
     /**
      * @test
      */
-    public function translation_callback_transforms_values()
+    public function wrapper_callback_transforms_values()
     {
         $this->copyStubs('bundle10');
 
@@ -94,5 +98,25 @@ class BundleItemWrapperTest extends TestCase
         $this->assertEquals('YOU SENT A MESSAGE TO :USER', $values[1]);
 
         $this->assertEquals('You have an invite from :user', $values[2]);
+    }
+
+    /**
+     * @test
+     */
+    public function wrapper_change_changes_key()
+    {
+        $this->copyStubs('bundle10');
+
+        $this->copyTranslations();
+
+        $bundle = new Bundle('bundle10', $this->bundleMap);
+
+        $this->translator->translateBundle($bundle);
+
+        $keys = $bundle->getValues()->map(function ($value) {
+            return $value->getKey();
+        });
+
+        $this->assertEquals('newKey', $keys[3]);
     }
 }

@@ -10,4 +10,7 @@ return [
     bundleItem('user.invite_from', 'key_callback', [
         'callback' => 'studly_case'
     ]),
+    bundleItem('user.invite_from', 'key_change', [
+        'new' => 'newKey'
+    ]),
 ];

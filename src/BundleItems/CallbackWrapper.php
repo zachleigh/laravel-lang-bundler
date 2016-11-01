@@ -37,8 +37,8 @@ class CallbackWrapper extends ItemWrapper
      */
     protected function callCallback($string)
     {
-        if (is_callable($this->effectParameters['callback'])) {
-            $callback = $this->effectParameters['callback'];
+        if (is_callable($this->wrapperParameters['callback'])) {
+            $callback = $this->wrapperParameters['callback'];
 
             return $callback($string);
         }

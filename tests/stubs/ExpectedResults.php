@@ -211,4 +211,19 @@ trait ExpectedResults
             'top'     => 'Top',
         ];
     }
+
+    /**
+     * Expected results for bundle10 translations.
+     *
+     * @return array
+     */
+    private function bundle10()
+    {
+        return [
+            "Welcome_user" => "Welcome :user",
+            "message_to" => "YOU SENT A MESSAGE TO :USER",
+            "InviteFrom" => "You have an invite from :user",
+            "newKey" => "You have an invite from :user",
+        ];
+    }
 }

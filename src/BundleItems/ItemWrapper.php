@@ -18,22 +18,22 @@ abstract class ItemWrapper extends BundleItem
      *
      * @var array
      */
-    protected $effectParameters = [];
+    protected $wrapperParameters = [];
 
     /**
      * Construct.
      *
      * @param string $id
      * @param string $affect
-     * @param string $effectParameters
+     * @param array  $wrapperParameters
      */
-    public function __construct($id, $affect, $effectParameters)
+    public function __construct($id, $affect = null, array $wrapperParameters = [])
     {
         parent::__construct($id);
 
         $this->affect = $affect;
 
-        $this->effectParameters = $effectParameters;
+        $this->wrapperParameters = $wrapperParameters;
     }
 
     /**
