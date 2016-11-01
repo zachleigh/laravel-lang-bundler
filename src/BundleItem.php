@@ -95,7 +95,8 @@ class BundleItem
 
     /**
      * Return the final key/value pair array.
-     * @return [type] [description]
+     *
+     * @return array
      */
     public function getReturnArray()
     {
