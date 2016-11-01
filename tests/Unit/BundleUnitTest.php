@@ -3,7 +3,7 @@
 namespace LaravelLangBundler\tests\Unit;
 
 use LaravelLangBundler\Bundle;
-use LaravelLangBundler\Translation;
+use LaravelLangBundler\BundleItem;
 use LaravelLangBundler\tests\TestCase;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
 
@@ -20,10 +20,22 @@ class BundleUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.bundle2.component2', $this->bundleMap);
 
-        $values = $bundle->getValues();
+        foreach ($bundle->getValues() as $value) {
+            $this->assertInstanceOf(BundleItem::class, $value);
+        }
+    }
 
-        foreach ($values as $value) {
-            $this->assertInstanceOf(Translation::class, $value);
+    /**
+     * @test
+     */
+    public function if_value_is_already_a_translation_object_it_passes()
+    {
+        $this->copyStubs('bundle9');
+
+        $bundle = new Bundle('bundle9', $this->bundleMap);
+
+        foreach ($bundle->getValues() as $value) {
+            $this->assertInstanceOf(BundleItem::class, $value);
         }
     }
 }

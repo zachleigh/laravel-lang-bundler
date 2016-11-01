@@ -153,9 +153,11 @@ class Bundle
     protected function setValues(Collection $values)
     {
         return $this->values = $values->map(function ($value) {
-            if (!$value instanceof Translation) {
-                return new Translation($value);
+            if (!$value instanceof BundleItem) {
+                return new BundleItem($value);
             }
+
+            return $value;
         });
     }
 

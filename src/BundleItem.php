@@ -2,7 +2,7 @@
 
 namespace LaravelLangBundler;
 
-class Translation
+class BundleItem
 {
     /**
      * Lang id of translation.
@@ -12,7 +12,7 @@ class Translation
     protected $id;
 
     /**
-     * Namespace of id.
+     * Namespace of id. The last value in the id.
      *
      * @var string
      */
@@ -30,7 +30,14 @@ class Translation
      *
      * @var Collection
      */
-    protected $parameters;
+    protected $parameters = [];
+
+    /**
+     * The translation value from lang. Returned in return array.
+     *
+     * @var mixed
+     */
+    protected $value = '';
 
     /**
      * Construct.
@@ -87,6 +94,25 @@ class Translation
     }
 
     /**
+     * Return the final key/value pair array.
+     * @return [type] [description]
+     */
+    public function getReturnArray()
+    {
+        return [$this->getKey() => $this->getValue()];
+    }
+
+    /**
+     * Return the value.
+     *
+     * @return mixed
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
      * Set only valid parameters. If namespaced, only parameters with
      * translation namespace will be set.
      *
@@ -105,6 +131,16 @@ class Translation
 
             return [$key => $value];
         });
+    }
+
+    /**
+     * Set the lang value on the object.
+     *
+     * @param mixed $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
     }
 
     /**

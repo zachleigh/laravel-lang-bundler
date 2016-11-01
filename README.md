@@ -10,6 +10,7 @@
   - [Why](#why)
   - [Install](#install)
   - [Usage](#usage)
+  - [Advanced Usage](#advanced-usage)
   - [Commands](#commands)
   - [Configuration](#configuration)
   - [Limitations](#limitations)
@@ -150,6 +151,82 @@ transB('bundle_name', [
 ]);
 ```
 
+### Advanced Usage
+#### Modify return keys and values
+It is possible to modify the key and value in the returned translation array. If using the same example as above we wanted to convert the 'welcome_user' value to all caps, we could accomplish it by using the bundleItem() helper function in the bundle file.     
+user.php translation file:
+```php
+return [
+    'welcome_user' => 'Welcome :user',
+    'message_to'   => 'You sent a message to :user',
+    'invite_from'  => 'You have an invite from :user'
+];
+```
+Bundle file:
+```php
+return [
+    bundleItem('user.welcome_user', 'value_callback', [
+        'callback' => 'strtoupper'
+    ]),
+    'user.message_to',
+    'user.invite_from'
+];
+```
+We wrap the bundle key ('user.welcome_user') in the bundleItem() global function. The function takes the following arguments:   
+```php   
+bundleItem($id, $type, $parameters = []);
+```
+So in the example, we pass the translation key ($id), the type (perform a 'callback' on the returned 'value'), and an array of parameters, in the case of the callback modifier, it requires the name of the callback: ['callback' => 'strtoupper']. This returns the following values (assuming a non-namespaced user variable with the value 'Bob'):
+```
+[
+    'welcome_user' => 'WELCOME BOB',
+    'message_to'   => 'You sent a message to Bob',
+    'invite_from'  => 'You have an invite from Bob'
+];
+
+If we wanted to do the same to the key, we could do this:
+```php
+return [
+    bundleItem('user.welcome_user', 'key_callback', [
+        'callback' => 'strtoupper'
+    ]),
+    'user.message_to',
+    'user.invite_from'
+];
+```
+
+##### Available modifiers
+###### callback
+Perform a callback on a key or value.
+```php
+    bundleItem('user.welcome_user', 'value_callback', [
+        'callback' => 'ucfirst'
+    ]),
+```
+
+##### Creating your own modifier
+Simply create a class that extends LaravelLangBundler\BundleItems\ItemWrapper. The class has two abstract meths that must be implemented in your class:
+```php
+    /**
+     * Alter key and return.
+     *
+     * @param string $key
+     *
+     * @return string
+     */
+    abstract public function key($key);
+
+    /**
+     * Alter value and return.
+     *
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    abstract public function value($value);
+```
+The same class is used to modify both the value and key. Define your modification and return the desired key/value.
+
 ### Commands
 ##### php artisan langb:start
 Get started by creating a bundles directory in your lang folder.
@@ -220,6 +297,7 @@ return [
 ### Limitations    
 This is a brief list of the current issues that need to be resolved to make this package more useful and complete:
   - Currently does not support trans_choice(). Could implement this using parameters and namespacing.
+  - key/value modifiers currently must be placed in bundleitems directory.
 
 ### Testing
 ```

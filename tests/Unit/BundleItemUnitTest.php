@@ -6,7 +6,7 @@ use LaravelLangBundler\Bundle;
 use LaravelLangBundler\tests\TestCase;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
 
-class TranslationUnitTest extends TestCase
+class BundleItemUnitTest extends TestCase
 {
     use ExpectedResults;
 

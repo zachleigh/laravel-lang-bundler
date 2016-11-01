@@ -33,7 +33,9 @@ class Translator
                     $locale
                 );
 
-                return [$translation->getKey() => $value];
+                $translation->setValue($value);
+
+                return $translation->getReturnArray();
             });
     }
 }
