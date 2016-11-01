@@ -43,7 +43,7 @@ class BundleMap
     /**
      * Return true if bundleMap is empty.
      *
-     * @return boolean
+     * @return bool
      */
     public function bundleMapIsEmpty()
     {
@@ -60,7 +60,7 @@ class BundleMap
     public function getBundleValues(array $pathKeys)
     {
         $this->mapBundles();
-        
+
         $temp = &$this->bundleMap;
 
         foreach ($pathKeys as $key) {

@@ -3,7 +3,6 @@
 namespace LaravelLangBundler\tests\Unit;
 
 use LaravelLangBundler\Bundle;
-use LaravelLangBundler\Translation;
 use LaravelLangBundler\tests\TestCase;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
 
