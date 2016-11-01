@@ -213,6 +213,12 @@ bundleItem('user.invite_from', 'key_change', [
 ]),
 ```
 
+###### values
+If translation value is an array, run array_values() on array and return only values keyed by integers. Does nothing to keys.
+```php
+bundleItem('home.months', 'value_values')
+```
+
 ##### Creating your own modifier
 Simply create a class that extends LaravelLangBundler\BundleItems\ItemWrapper. The class has two abstract meths that must be implemented in your class:
 ```php

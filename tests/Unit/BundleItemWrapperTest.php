@@ -34,19 +34,7 @@ class BundleItemWrapperTest extends TestCase
      */
     public function parameters_can_still_be_passed_to_transb()
     {
-        $this->copyStubs('bundle10');
-
-        $this->copyTranslations();
-
-        $bundle = new Bundle('bundle10', $this->bundleMap);
-
-        $this->translator->translateBundle($bundle, [
-            'user' => 'Bob',
-        ]);
-
-        $values = $bundle->getValues()->map(function ($value) {
-            return $value->getValue();
-        });
+        extract($this->testWrapper(['user' => 'Bob']));
 
         $this->assertEquals('Welcome Bob', $values[0]);
 
@@ -60,13 +48,7 @@ class BundleItemWrapperTest extends TestCase
      */
     public function wrapper_callback_transforms_keys()
     {
-        $this->copyStubs('bundle10');
-
-        $bundle = new Bundle('bundle10', $this->bundleMap);
-
-        $keys = $bundle->getValues()->map(function ($value) {
-            return $value->getKey();
-        });
+        extract($this->testWrapper());
 
         $this->assertEquals('Welcome_user', $keys[0]);
 
@@ -80,17 +62,7 @@ class BundleItemWrapperTest extends TestCase
      */
     public function wrapper_callback_transforms_values()
     {
-        $this->copyStubs('bundle10');
-
-        $this->copyTranslations();
-
-        $bundle = new Bundle('bundle10', $this->bundleMap);
-
-        $this->translator->translateBundle($bundle);
-
-        $values = $bundle->getValues()->map(function ($value) {
-            return $value->getValue();
-        });
+        extract($this->testWrapper());
 
         $this->assertEquals('Welcome :user', $values[0]);
 
@@ -104,18 +76,46 @@ class BundleItemWrapperTest extends TestCase
      */
     public function wrapper_change_changes_key()
     {
+        extract($this->testWrapper());
+
+        $this->assertEquals('newKey', $keys[3]);
+    }
+
+    /**
+     * @test
+     */
+    public function wrapper_values_gets_value_array_values()
+    {
+        extract($this->testWrapper());
+
+        $expected = $this->getExpected('months');
+
+        $this->assertEquals($expected, $values[4]);
+    }
+
+    /**
+     * Run the wrapper test and return keys and values.
+     *
+     * @return array
+     */
+    public function testWrapper($parameters = [])
+    {
         $this->copyStubs('bundle10');
 
         $this->copyTranslations();
 
         $bundle = new Bundle('bundle10', $this->bundleMap);
 
-        $this->translator->translateBundle($bundle);
+        $this->translator->translateBundle($bundle, $parameters);
 
         $keys = $bundle->getValues()->map(function ($value) {
             return $value->getKey();
         });
 
-        $this->assertEquals('newKey', $keys[3]);
+        $values = $bundle->getValues()->map(function ($value) {
+            return $value->getValue();
+        });
+
+        return ['keys' => $keys, 'values' => $values];
     }
 }

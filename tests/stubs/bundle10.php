@@ -13,4 +13,5 @@ return [
     bundleItem('user.invite_from', 'key_change', [
         'new' => 'newKey',
     ]),
+    bundleItem('home.months', 'value_values'),
 ];

@@ -25,6 +25,7 @@ class StubWrapper extends ItemWrapper
      */
     public function key($key)
     {
+        //
     }
 
     /**
@@ -36,5 +37,6 @@ class StubWrapper extends ItemWrapper
      */
     public function value($value)
     {
+        //
     }
 }

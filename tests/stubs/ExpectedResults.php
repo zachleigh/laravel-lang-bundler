@@ -226,4 +226,27 @@ trait ExpectedResults
             'newKey'       => 'You have an invite from :user',
         ];
     }
+
+    /**
+     * Expected results for months translations.
+     *
+     * @return array
+     */
+    private function months()
+    {
+        return array_values([
+            'january' => 'Jan',
+            'february' => 'Feb',
+            'march' => 'March',
+            'april' => 'April',
+            'may' => 'May',
+            'june' => 'June',
+            'july' => 'July',
+            'august' => 'Aug',
+            'september' => 'Sept',
+            'october' => 'Oct',
+            'november' => 'Nov',
+            'december' => 'Dec'
+        ]);
+    }
 }
