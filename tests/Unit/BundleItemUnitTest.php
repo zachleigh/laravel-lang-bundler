@@ -92,7 +92,7 @@ class BundleItemUnitTest extends TestCase
         $item = $bundle->getValues()[3];
 
         $item->setParameters([
-            'inbox_status.choice' => 3
+            'inbox_status.choice' => 3,
         ]);
 
         $this->assertEquals(3, $item->hasChoice());
