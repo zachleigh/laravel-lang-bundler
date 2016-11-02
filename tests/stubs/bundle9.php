@@ -3,5 +3,5 @@
 return [
     'user.welcome_user',
     'user.message_to',
-    bundleItem('user.invite_from'),
+    bundle_item('user.invite_from'),
 ];

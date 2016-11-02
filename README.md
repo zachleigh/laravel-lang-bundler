@@ -153,13 +153,13 @@ transB('bundle_name', [
 
 ### Advanced Usage
 #### Modify return keys and values
-To modify the key and value in the returned translation array, use the bundleItem() helper on a specific bundle item.   
+To modify the key and value in the returned translation array, use the bundle_item() helper on a specific bundle item.   
 ```php
-bundleItem($id, $type, $parameters = []);
+bundle_item($id, $type, $parameters = []);
 ```
 $id is the lang key. $type must be in the following format: 'target_type'. 'target' declares what item is to be affected by the modification and can be set to either 'value', 'key', or 'both'. 'type' declares the type of modification (callback, change etc.). $parameters is an array of parameters to be sent to the class that performs the modification.    
 
-If using the same example as above we wanted to convert the 'welcome_user' value to all caps, we could accomplish it by using the bundleItem() helper function in the bundle file.     
+If using the same example as above we wanted to convert the 'welcome_user' value to all caps, we could accomplish it by using the bundle_item() helper function in the bundle file.     
 user.php translation file:
 ```php
 return [
@@ -171,14 +171,14 @@ return [
 Bundle file:
 ```php
 return [
-    bundleItem('user.welcome_user', 'value_callback', [
+    bundle_item('user.welcome_user', 'value_callback', [
         'callback' => 'strtoupper'
     ]),
     'user.message_to',
     'user.invite_from'
 ];
 ```
-We wrap the bundle key 'user.welcome_user' in the bundleItem() global function. We pass the translation key ($id), the type (perform a 'callback' on the returned 'value'), and an array of parameters, in the case of the callback modifier, it requires the name of the callback: ['callback' => 'strtoupper']. This returns the following values (assuming a non-namespaced user variable with the value 'Bob'):
+We wrap the bundle key 'user.welcome_user' in the bundle_item() global function. We pass the translation key ($id), the type (perform a 'callback' on the returned 'value'), and an array of parameters, in the case of the callback modifier, it requires the name of the callback: ['callback' => 'strtoupper']. This returns the following values (assuming a non-namespaced user variable with the value 'Bob'):
 ```
 [
     'welcome_user' => 'WELCOME BOB',
@@ -190,7 +190,7 @@ We wrap the bundle key 'user.welcome_user' in the bundleItem() global function. 
 If we wanted to do the same to the key, we could do this:
 ```php
 return [
-    bundleItem('user.welcome_user', 'key_callback', [
+    bundle_item('user.welcome_user', 'key_callback', [
         'callback' => 'strtoupper'
     ]),
     'user.message_to',
@@ -202,7 +202,7 @@ return [
 ###### callback
 Perform a callback on a key or value. Requires a 'callback' parameter.
 ```php
-bundleItem('user.welcome_user', 'value_callback', [
+bundle_item('user.welcome_user', 'value_callback', [
     'callback' => 'ucfirst'
 ]),
 ```
@@ -210,7 +210,7 @@ bundleItem('user.welcome_user', 'value_callback', [
 ###### change
 Change a key to a new value. Does nothing to values. Requires 'new' parameter.
 ```php
-bundleItem('user.invite_from', 'key_change', [
+bundle_item('user.invite_from', 'key_change', [
     'new' => 'newKey'
 ]),
 ```
@@ -218,7 +218,7 @@ bundleItem('user.invite_from', 'key_change', [
 ###### values
 If translation value is an array, run array_values() on array and return only values keyed by integers. Does nothing to keys.
 ```php
-bundleItem('home.months', 'value_values')
+bundle_item('home.months', 'value_values')
 ```
 
 ##### Creating your own modifier

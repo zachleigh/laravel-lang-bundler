@@ -23,7 +23,7 @@ if (!function_exists('transB')) {
     }
 }
 
-if (!function_exists('bundleItem')) {
+if (!function_exists('bundle_item')) {
     /**
      * Create a BundleItem class directly from the bundle registration file.
      *
@@ -33,7 +33,7 @@ if (!function_exists('bundleItem')) {
      *
      * @return BundleItem
      */
-    function bundleItem($id, $type = null, $parameters = [])
+    function bundle_item($id, $type = null, $parameters = [])
     {
         if (is_null($type)) {
             return new BundleItem($id, null, $parameters);
