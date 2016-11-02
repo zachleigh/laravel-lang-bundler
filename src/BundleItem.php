@@ -40,6 +40,13 @@ class BundleItem
     protected $value = '';
 
     /**
+     * If not null, trans_choice will be called and value passed as countable.
+     *
+     * @var null|int|Countable
+     */
+    protected $choice = null;
+
+    /**
      * Construct.
      *
      * @param string $id
@@ -51,6 +58,16 @@ class BundleItem
         $this->setKey($namespace);
 
         $this->setId($id);
+    }
+
+    /**
+     * Return the value of choice. If not null, trans_choice will be called.
+     *
+     * @return int|Countable|null
+     */
+    public function hasChoice()
+    {
+        return $this->choice;
     }
 
     /**
@@ -114,6 +131,16 @@ class BundleItem
     }
 
     /**
+     * Set choice value on object.
+     *
+     * @param int|Countable $value
+     */
+    public function setChoice($value)
+    {
+        $this->choice = $value;
+    }
+
+    /**
      * Set only valid parameters. If namespaced, only parameters with
      * translation namespace will be set.
      *
@@ -122,16 +149,36 @@ class BundleItem
     public function setParameters($parameters)
     {
         $this->parameters = collect($parameters)->mapWithKeys(function ($value, $key) {
-            $keyArray = explode('.', $key);
-
-            if (count($keyArray) === 2 && $keyArray[0] === $this->getNamespace()) {
-                $key = $keyArray[1];
-            } elseif (count($keyArray) === 2 && $keyArray[0] !== $this->getNamespace()) {
+            if(!$key = $this->getNamespacedKey($key)) {
                 return;
+            }
+
+            if ($key === 'choice') {
+                $this->setChoice($value);
             }
 
             return [$key => $value];
         });
+    }
+
+    /**
+     * Get only global and keys with this item's namespace.
+     *
+     * @param  string $key
+     *
+     * @return string|null
+     */
+    protected function getNamespacedKey($key)
+    {
+        $keyArray = explode('.', $key);
+
+        if (count($keyArray) === 2 && $keyArray[0] === $this->getNamespace()) {
+            $key = $keyArray[1];
+        } elseif (count($keyArray) === 2 && $keyArray[0] !== $this->getNamespace()) {
+            return null;
+        }
+
+        return $key;
     }
 
     /**
@@ -142,6 +189,8 @@ class BundleItem
     public function setValue($value)
     {
         $this->value = $value;
+
+        return $this;
     }
 
     /**

@@ -23,19 +23,27 @@ class Translator
         $locale = null
     ) {
         return $bundle->getValues()
-            ->mapWithKeys(function ($translation) use ($parameters, $domain, $locale) {
-                $translation->setParameters($parameters);
+            ->mapWithKeys(function ($bundleItem) use ($parameters, $domain, $locale) {
+                $bundleItem->setParameters($parameters);
 
-                $value = app('translator')->trans(
-                    $translation->getId(),
-                    $translation->getParameters(),
-                    $domain,
-                    $locale
-                );
+                if ($choice = $bundleItem->hasChoice()) {
+                    $value = app('translator')->transChoice(
+                        $bundleItem->getId(),
+                        $choice,
+                        $bundleItem->getParameters(),
+                        $domain,
+                        $locale
+                    );
+                } else {
+                    $value = app('translator')->trans(
+                        $bundleItem->getId(),
+                        $bundleItem->getParameters(),
+                        $domain,
+                        $locale
+                    );
+                }
 
-                $translation->setValue($value);
-
-                return $translation->getReturnArray();
+                return $bundleItem->setValue($value)->getReturnArray();
             });
     }
 }

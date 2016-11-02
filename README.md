@@ -151,6 +151,21 @@ transB('bundle_name', [
 ]);
 ```
 
+##### 4. Pluralize values
+It is possible to pluralize lang items by passing a namespaced 'choice' parameter in the transB() function parameters. FOr example, if our lang file value looked like this:
+```php
+'inbox_status' => 'You have a new message.|You have new messages'
+```
+We could register it in our bundle normally:
+```php
+'home.inbox_status'
+```
+And then when calling transB(), pass a parameter called 'inbox_status.choice' with the desired choice value:
+```php
+transB('bundle_name', ['inbox_status.choice' => 3]);
+```
+The result will look be the pluralized string "You have new messages".
+
 ### Advanced Usage
 #### Modify return keys and values
 To modify the key and value in the returned translation array, use the bundle_item() helper on a specific bundle item.   
@@ -314,11 +329,6 @@ return [
     ];
 ];
 ```
-
-### Limitations    
-This is a brief list of the current issues that need to be resolved to make this package more useful and complete:
-  - Currently does not support trans_choice(). Could implement this using parameters and namespacing.
-  - key/value modifiers currently must be placed in bundleitems directory.
 
 ### Testing
 ```

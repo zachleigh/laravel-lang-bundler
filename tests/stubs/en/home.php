@@ -17,5 +17,6 @@ return [
         'october' => 'Oct',
         'november' => 'Nov',
         'december' => 'Dec'
-    ]
+    ],
+    'inbox_status' => 'You have a new message.|You have new messages'
 ];

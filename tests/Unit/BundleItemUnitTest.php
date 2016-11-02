@@ -23,10 +23,10 @@ class BundleItemUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.bundle7', $this->bundleMap);
 
-        foreach ($bundle->getValues() as $translation) {
-            $expected = 'translations.'.$translation->getNamespace();
+        foreach ($bundle->getValues() as $item) {
+            $expected = 'translations.'.$item->getNamespace();
 
-            $this->assertEquals($expected, $translation->getId());
+            $this->assertEquals($expected, $item->getId());
         }
     }
 
@@ -43,10 +43,10 @@ class BundleItemUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.bundle5', $this->bundleMap);
 
-        foreach ($bundle->getValues() as $translation) {
-            $expected = studly_case($translation->getNamespace());
+        foreach ($bundle->getValues() as $item) {
+            $expected = studly_case($item->getNamespace());
 
-            $this->assertEquals($expected, $translation->getKey());
+            $this->assertEquals($expected, $item->getKey());
         }
     }
 
@@ -61,18 +61,40 @@ class BundleItemUnitTest extends TestCase
 
         $bundle = new Bundle('bundles.bundle8', $this->bundleMap);
 
-        foreach ($bundle->getValues() as $translation) {
+        foreach ($bundle->getValues() as $item) {
             $parameters = [
                 'welcome_user.user' => 'Bob',
                 'message_to.user'   => 'Sally',
                 'invite_from.user'  => 'George',
             ];
 
-            $translation->setParameters($parameters);
+            $item->setParameters($parameters);
 
-            $expected = $parameters[$translation->getKey().'.user'];
+            if (isset($parameters[$item->getKey().'.user'])) {
+                $expected = $parameters[$item->getKey().'.user'];
 
-            $this->assertEquals($expected, $translation->getParameters()['user']);
+                $this->assertEquals($expected, $item->getParameters()['user']);
+            }
         }
+    }
+
+    /**
+     * @test
+     */
+    public function it_sets_choice_if_namespaced_choice_value_passed_in_parameters()
+    {
+        $this->copyStubs('bundle8');
+
+        $this->copyTranslations();
+
+        $bundle = new Bundle('bundles.bundle8', $this->bundleMap);
+
+        $item = $bundle->getValues()[3];
+
+        $item->setParameters([
+            'inbox_status.choice' => 3
+        ]);
+
+        $this->assertEquals(3, $item->hasChoice());
     }
 }

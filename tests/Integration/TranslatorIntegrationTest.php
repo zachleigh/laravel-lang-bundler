@@ -95,7 +95,7 @@ class TranslatorIntegrationTest extends TestCase
             'invite_from'  => 'You have an invite from George',
         ];
 
-        $this->assertEquals($expected, $translations->all());
+        $this->assertArraySubset($expected, $translations->all());
     }
 
     /**
@@ -180,5 +180,24 @@ class TranslatorIntegrationTest extends TestCase
         );
 
         $this->assertEquals($expected, $translations->all());
+    }
+
+    /**
+     * @test
+     */
+    public function if_choice_is_not_null_trans_choice_is_run()
+    {
+        $this->copyStubs('bundle8');
+
+        $this->copyTranslations();
+
+        $bundle = new Bundle('bundles.bundle8', $this->bundleMap);
+
+        $translations = $this->translator->translateBundle(
+            $bundle,
+            ['user' => 'Bob', 'inbox_status.choice' => 3]
+        );
+
+        $this->assertEquals('You have new messages', $translations['inbox_status']);
     }
 }
