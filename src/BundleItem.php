@@ -149,7 +149,7 @@ class BundleItem
     public function setParameters($parameters)
     {
         $this->parameters = collect($parameters)->mapWithKeys(function ($value, $key) {
-            if(!$key = $this->getNamespacedKey($key)) {
+            if (!$key = $this->getNamespacedKey($key)) {
                 return;
             }
 
@@ -164,7 +164,7 @@ class BundleItem
     /**
      * Get only global and keys with this item's namespace.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @return string|null
      */
@@ -175,7 +175,7 @@ class BundleItem
         if (count($keyArray) === 2 && $keyArray[0] === $this->getNamespace()) {
             $key = $keyArray[1];
         } elseif (count($keyArray) === 2 && $keyArray[0] !== $this->getNamespace()) {
-            return null;
+            return;
         }
 
         return $key;

@@ -235,18 +235,18 @@ trait ExpectedResults
     private function months()
     {
         return array_values([
-            'january' => 'Jan',
-            'february' => 'Feb',
-            'march' => 'March',
-            'april' => 'April',
-            'may' => 'May',
-            'june' => 'June',
-            'july' => 'July',
-            'august' => 'Aug',
+            'january'   => 'Jan',
+            'february'  => 'Feb',
+            'march'     => 'March',
+            'april'     => 'April',
+            'may'       => 'May',
+            'june'      => 'June',
+            'july'      => 'July',
+            'august'    => 'Aug',
             'september' => 'Sept',
-            'october' => 'Oct',
-            'november' => 'Nov',
-            'december' => 'Dec'
+            'october'   => 'Oct',
+            'november'  => 'Nov',
+            'december'  => 'Dec',
         ]);
     }
 }
