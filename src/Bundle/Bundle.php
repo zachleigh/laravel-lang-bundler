@@ -4,6 +4,7 @@ namespace LaravelLangBundler\Bundle;
 
 use Illuminate\Support\Collection;
 use LaravelLangBundler\BundleItems\BundleItem;
+use LaravelLangBundler\BundleItems\ItemFactory;
 
 class Bundle
 {
@@ -155,7 +156,7 @@ class Bundle
     {
         return $this->values = $values->map(function ($value) {
             if (!$value instanceof BundleItem) {
-                return new BundleItem($value);
+                return ItemFactory::build($value);
             }
 
             return $value;

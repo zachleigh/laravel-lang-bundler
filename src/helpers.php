@@ -1,7 +1,6 @@
 <?php
 
-use Illuminate\Container\Container;
-use LaravelLangBundler\BundleItems\BundleItem;
+use LaravelLangBundler\BundleItems\ItemFactory;
 
 if (!function_exists('transB')) {
     /**
@@ -36,24 +35,6 @@ if (!function_exists('bundle_item')) {
      */
     function bundle_item($id, $type = null, $parameters = [])
     {
-        if (is_null($type)) {
-            return new BundleItem($id, null, $parameters);
-        }
-
-        list($affect, $name) = explode('_', $type);
-
-        $className = ucfirst($name).'Mod';
-
-        $appNamespace = Container::getInstance()->getNamespace();
-
-        $localClass = "\\{$appNamespace}LangBundler\\Mods\\{$className}";
-
-        if (class_exists($localClass)) {
-            return new $localClass($id, $affect, $parameters);
-        }
-
-        $vendorClass = "\LaravelLangBundler\\BundleItems\\Mods\\{$className}";
-
-        return new $vendorClass($id, $affect, $parameters);
+        return ItemFactory::build($id, $type, $parameters);
     }
 }
