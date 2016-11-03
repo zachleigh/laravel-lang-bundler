@@ -3,7 +3,6 @@
 namespace LaravelLangBundler\BundleItems;
 
 use Illuminate\Container\Container;
-use LaravelLangBundler\BundleItems\BundleItem;
 
 class ItemFactory
 {
