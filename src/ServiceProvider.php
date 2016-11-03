@@ -2,6 +2,8 @@
 
 namespace LaravelLangBundler;
 
+use LaravelLangBundler\Bundle\BundleMap;
+use LaravelLangBundler\Commands\MakeBundleMod;
 use LaravelLangBundler\Commands\MakeBundlesFolder;
 use LaravelLangBundler\Commands\MakeNewBundleFile;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -50,8 +52,14 @@ class ServiceProvider extends BaseServiceProvider
             return $app[MakeNewBundleFile::class];
         });
 
+        $this->app->singleton('command.langb.mod', function ($app) {
+            return $app[MakeBundleMod::class];
+        });
+
         $this->commands('command.langb.start');
 
         $this->commands('command.langb.new');
+
+        $this->commands('command.langb.mod');
     }
 }

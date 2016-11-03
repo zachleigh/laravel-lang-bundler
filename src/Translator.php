@@ -3,6 +3,7 @@
 namespace LaravelLangBundler;
 
 use Illuminate\Support\Collection;
+use LaravelLangBundler\Bundle\Bundle;
 
 class Translator
 {

@@ -2,12 +2,13 @@
 
 namespace LaravelLangBundler\tests\Unit;
 
-use LaravelLangBundler\Bundle;
+use Artisan;
+use LaravelLangBundler\Bundle\Bundle;
 use LaravelLangBundler\tests\TestCase;
-use LaravelLangBundler\BundleItems\CallbackWrapper;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
+use LaravelLangBundler\BundleItems\Mods\CallbackMod;
 
-class BundleItemWrapperTest extends TestCase
+class BundleItemModTest extends TestCase
 {
     use ExpectedResults;
 
@@ -25,7 +26,7 @@ class BundleItemWrapperTest extends TestCase
                 break;
             }
 
-            $this->assertInstanceOf(CallbackWrapper::class, $value);
+            $this->assertInstanceOf(CallbackMod::class, $value);
         }
     }
 
@@ -34,7 +35,7 @@ class BundleItemWrapperTest extends TestCase
      */
     public function parameters_can_still_be_passed_to_transb()
     {
-        extract($this->testWrapper(['user' => 'Bob']));
+        extract($this->testMod(['user' => 'Bob']));
 
         $this->assertEquals('Welcome Bob', $values[0]);
 
@@ -46,9 +47,9 @@ class BundleItemWrapperTest extends TestCase
     /**
      * @test
      */
-    public function wrapper_callback_transforms_keys()
+    public function mod_callback_transforms_keys()
     {
-        extract($this->testWrapper());
+        extract($this->testMod());
 
         $this->assertEquals('Welcome_user', $keys[0]);
 
@@ -60,9 +61,9 @@ class BundleItemWrapperTest extends TestCase
     /**
      * @test
      */
-    public function wrapper_callback_transforms_values()
+    public function mod_callback_transforms_values()
     {
-        extract($this->testWrapper());
+        extract($this->testMod());
 
         $this->assertEquals('Welcome :user', $values[0]);
 
@@ -74,9 +75,9 @@ class BundleItemWrapperTest extends TestCase
     /**
      * @test
      */
-    public function wrapper_callback_transforms_both()
+    public function mod_callback_transforms_both()
     {
-        extract($this->testWrapper());
+        extract($this->testMod());
 
         $this->assertEquals('MESSAGE_TO', $keys[5]);
 
@@ -86,9 +87,36 @@ class BundleItemWrapperTest extends TestCase
     /**
      * @test
      */
-    public function wrapper_change_changes_key()
+    public function mods_can_be_read_from_app_directory()
     {
-        extract($this->testWrapper());
+        Artisan::call('langb:mod', ['name' => 'test']);
+
+        $path = app_path('LangBundler/Mods/Bin2hexMod.php');
+
+        $stub = file_get_contents(__DIR__.'/../stubs/Bin2hexMod.php');
+
+        file_put_contents($path, $stub);
+
+        $this->copyStubs('bin2hex');
+
+        $this->copyTranslations();
+
+        $bundle = new Bundle('bin2hex', $this->bundleMap);
+
+        $this->translator->translateBundle($bundle);
+
+        $this->assertEquals(
+            '77656c636f6d655f75736572',
+            $bundle->getValues()[0]->getKey()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function mod_change_changes_key()
+    {
+        extract($this->testMod());
 
         $this->assertEquals('newKey', $keys[3]);
     }
@@ -96,9 +124,9 @@ class BundleItemWrapperTest extends TestCase
     /**
      * @test
      */
-    public function wrapper_values_gets_value_array_values()
+    public function mod_values_gets_value_array_values()
     {
-        extract($this->testWrapper());
+        extract($this->testMod());
 
         $expected = $this->getExpected('months');
 
@@ -106,11 +134,11 @@ class BundleItemWrapperTest extends TestCase
     }
 
     /**
-     * Run the wrapper test and return keys and values.
+     * Run the mod test and return keys and values.
      *
      * @return array
      */
-    public function testWrapper($parameters = [])
+    public function testMod($parameters = [])
     {
         $this->copyStubs('bundle10');
 

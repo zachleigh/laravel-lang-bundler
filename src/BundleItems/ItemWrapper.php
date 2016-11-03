@@ -2,8 +2,6 @@
 
 namespace LaravelLangBundler\BundleItems;
 
-use LaravelLangBundler\BundleItem;
-
 abstract class ItemWrapper extends BundleItem
 {
     /**

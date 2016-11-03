@@ -1,8 +1,10 @@
 <?php
 
-namespace LaravelLangBundler\BundleItems;
+namespace App\LangBundler\Mods;
 
-class StubWrapper extends ItemWrapper
+use LaravelLangBundler\BundleItems\ItemWrapper;
+
+class Bin2hexMod extends ItemWrapper
 {
     /*
     |--------------------------------------------------------------------------
@@ -25,7 +27,7 @@ class StubWrapper extends ItemWrapper
      */
     public function key($key)
     {
-        //
+        return bin2hex($key);
     }
 
     /**
@@ -37,6 +39,6 @@ class StubWrapper extends ItemWrapper
      */
     public function value($value)
     {
-        //
+        return bin2hex($value);
     }
 }

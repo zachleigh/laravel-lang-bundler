@@ -1,8 +1,10 @@
 <?php
 
-namespace LaravelLangBundler\BundleItems;
+namespace LaravelLangBundler\BundleItems\Mods;
 
-class CallbackWrapper extends ItemWrapper
+use LaravelLangBundler\BundleItems\ItemWrapper;
+
+class CallbackMod extends ItemWrapper
 {
     /**
      * Alter key and return.

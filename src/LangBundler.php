@@ -2,6 +2,9 @@
 
 namespace LaravelLangBundler;
 
+use LaravelLangBundler\Bundle\Bundle;
+use LaravelLangBundler\Bundle\BundleMap;
+
 class LangBundler
 {
     /**

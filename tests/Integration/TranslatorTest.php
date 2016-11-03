@@ -2,11 +2,11 @@
 
 namespace LaravelLangBundler\tests\Integration;
 
-use LaravelLangBundler\Bundle;
+use LaravelLangBundler\Bundle\Bundle;
 use LaravelLangBundler\tests\TestCase;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
 
-class TranslatorIntegrationTest extends TestCase
+class TranslatorTest extends TestCase
 {
     use ExpectedResults;
 

@@ -58,4 +58,14 @@ class CommandsTest extends TestCase
             $this->assertFileExists($file);
         }
     }
+
+    /**
+     * @test
+     */
+    public function make_bundle_wrapper_makes_a_bundle_wrapper()
+    {
+        Artisan::call('langb:mod', ['name' => 'test']);
+
+        $this->assertFileExists(app_path('LangBundler/Mods/TestMod.php'));
+    }
 }

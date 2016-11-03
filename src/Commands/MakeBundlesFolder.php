@@ -34,6 +34,6 @@ class MakeBundlesFolder extends Command
             $filesystem->makeDirectory($directory);
         }
 
-        $this->info('bundles folder successfully created!');
+        $this->info('Bundles folder successfully created!');
     }
 }

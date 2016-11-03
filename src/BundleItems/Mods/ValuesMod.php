@@ -1,8 +1,10 @@
 <?php
 
-namespace LaravelLangBundler\BundleItems;
+namespace LaravelLangBundler\BundleItems\Mods;
 
-class ValuesWrapper extends ItemWrapper
+use LaravelLangBundler\BundleItems\ItemWrapper;
+
+class ValuesMod extends ItemWrapper
 {
     /**
      * Alter key and return.

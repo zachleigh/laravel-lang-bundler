@@ -1,8 +1,10 @@
 <?php
 
-namespace LaravelLangBundler\BundleItems;
+namespace LaravelLangBundler\BundleItems\Mods;
 
-class ChangeWrapper extends ItemWrapper
+use LaravelLangBundler\BundleItems\ItemWrapper;
+
+class ChangeMod extends ItemWrapper
 {
     /**
      * Alter key and return.

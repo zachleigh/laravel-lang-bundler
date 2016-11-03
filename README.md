@@ -237,7 +237,12 @@ bundle_item('home.months', 'value_values')
 ```
 
 ##### Creating your own modifier
-Simply create a class that extends LaravelLangBundler\BundleItems\ItemWrapper. The class has two abstract meths that must be implemented in your class:
+Use the 'mod' command to create a new mod class in App/LangBundler/Mods:
+```
+langb:mod {name}
+```
+
+There are two abstract methods that must be implemented in your class:
 ```php
     /**
      * Alter key and return.
@@ -258,7 +263,6 @@ Simply create a class that extends LaravelLangBundler\BundleItems\ItemWrapper. T
     abstract public function value($value);
 ```
 The same class is used to modify both the value and key. Define your modification and return the desired key/value.   
-To make it easier, there is a template file at LaravelLangBundler\BundleItems\WrapperTemplate.php.
 
 ### Commands
 ##### php artisan langb:start
@@ -270,6 +274,9 @@ Create a new bundle file located at path. For example:
 php artisan langb:new components.user.profile
 ```
 This would create the file lang/bundles/components/user/profile.php with an empty returned array.
+
+##### php artisan langb:mod {name}
+Create an empty mod template in App/LangBundler/Mods.
 
 ### Configuration
 ##### aliases

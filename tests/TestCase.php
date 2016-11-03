@@ -2,7 +2,7 @@
 
 namespace LaravelLangBundler\tests;
 
-use LaravelLangBundler\BundleMap;
+use LaravelLangBundler\Bundle\BundleMap;
 use LaravelLangBundler\Translator;
 use Illuminate\Filesystem\Filesystem;
 use LaravelLangBundler\ServiceProvider;
@@ -75,6 +75,8 @@ class TestCase extends IlluminateTestCase
         $filesystem->deleteDirectory(resource_path('lang'));
 
         $filesystem->delete(config_path('lang-bundler.php'));
+
+        $filesystem->deleteDirectory(app_path('LangBundler'));
 
         parent::tearDown();
     }

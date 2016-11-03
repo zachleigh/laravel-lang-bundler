@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelLangBundler;
+namespace LaravelLangBundler\BundleItems;
 
 class BundleItem
 {

@@ -2,12 +2,12 @@
 
 namespace LaravelLangBundler\tests\Unit;
 
-use LaravelLangBundler\Bundle;
-use LaravelLangBundler\BundleItem;
+use LaravelLangBundler\Bundle\Bundle;
 use LaravelLangBundler\tests\TestCase;
+use LaravelLangBundler\BundleItems\BundleItem;
 use LaravelLangBundler\tests\stubs\ExpectedResults;
 
-class BundleUnitTest extends TestCase
+class BundleTest extends TestCase
 {
     use ExpectedResults;
 

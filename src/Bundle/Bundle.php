@@ -1,8 +1,9 @@
 <?php
 
-namespace LaravelLangBundler;
+namespace LaravelLangBundler\Bundle;
 
 use Illuminate\Support\Collection;
+use LaravelLangBundler\BundleItems\BundleItem;
 
 class Bundle
 {
