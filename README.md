@@ -152,7 +152,7 @@ transB('bundle_name', [
 ```
 
 ##### 4. Pluralize values
-It is possible to pluralize lang items by passing a namespaced 'choice' parameter in the transB() function parameters. FOr example, if our lang file value looked like this:
+It is possible to pluralize lang items by passing a namespaced 'choice' parameter in the transB() function parameters. For example, if our lang file value looked like this:
 ```php
 'inbox_status' => 'You have a new message.|You have new messages'
 ```
@@ -186,14 +186,12 @@ return [
 Bundle file:
 ```php
 return [
-    bundle_item('user.welcome_user', 'value_callback', [
-        'callback' => 'strtoupper'
-    ]),
+    bundle_item('user.welcome_user', 'value_strtoupper'),
     'user.message_to',
     'user.invite_from'
 ];
 ```
-We wrap the bundle key 'user.welcome_user' in the bundle_item() global function. We pass the translation key ($id), the type (perform a 'callback' on the returned 'value'), and an array of parameters, in the case of the callback modifier, it requires the name of the callback: ['callback' => 'strtoupper']. This returns the following values (assuming a non-namespaced user variable with the value 'Bob'):
+Wrap the bundle key 'user.welcome_user' in the bundle_item() global function and pass the translation key ($id) plus the type (perform a 'strtoupper' on the returned 'value'). This returns the following values (assuming a non-namespaced user variable with the value 'Bob'):
 ```
 [
     'welcome_user' => 'WELCOME BOB',
@@ -205,9 +203,7 @@ We wrap the bundle key 'user.welcome_user' in the bundle_item() global function.
 If we wanted to do the same to the key, we could do this:
 ```php
 return [
-    bundle_item('user.welcome_user', 'key_callback', [
-        'callback' => 'strtoupper'
-    ]),
+    bundle_item('user.welcome_user', 'key_strtoupper'),
     'user.message_to',
     'user.invite_from'
 ];
@@ -218,7 +214,7 @@ return [
 Perform a callback on a key or value. Requires a 'callback' parameter.
 ```php
 bundle_item('user.welcome_user', 'value_callback', [
-    'callback' => 'ucfirst'
+    'callback' => 'function_name'
 ]),
 ```
 
