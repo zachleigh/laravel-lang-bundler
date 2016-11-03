@@ -17,4 +17,10 @@ return [
     bundle_item('user.message_to', 'both_callback', [
         'callback' => 'strtoupper',
     ]),
+    bundle_item('home.lowercase', 'value_ucfirst'),
+    bundle_item('home.lowercase', 'value_strtoupper'),
+    bundle_item('home.lowercase', 'value_explode', [
+        'delimiter' => ' ',
+    ]),
+    bundle_item('home.uppercase', 'value_strtolower'),
 ];

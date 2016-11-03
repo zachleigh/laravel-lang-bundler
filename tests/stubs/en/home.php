@@ -19,4 +19,6 @@ return [
         'december'  => 'Dec',
     ],
     'inbox_status' => 'You have a new message.|You have new messages',
+    'lowercase' => 'lowercase string',
+    'uppercase' => 'UPPERSACE STRING'
 ];

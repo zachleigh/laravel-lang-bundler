@@ -114,7 +114,7 @@ class BundleItemModTest extends TestCase
     /**
      * @test
      */
-    public function mod_change_changes_key()
+    public function mod_change_works()
     {
         extract($this->testMod());
 
@@ -124,13 +124,53 @@ class BundleItemModTest extends TestCase
     /**
      * @test
      */
-    public function mod_values_gets_value_array_values()
+    public function mod_values_works()
     {
         extract($this->testMod());
 
         $expected = $this->getExpected('months');
 
         $this->assertEquals($expected, $values[4]);
+    }
+
+    /**
+     * @test
+     */
+    public function mod_ucfirst_works()
+    {
+        extract($this->testMod());
+
+        $this->assertEquals('Lowercase string', $values[6]);
+    }
+
+    /**
+     * @test
+     */
+    public function mod_strtoupper_works()
+    {
+        extract($this->testMod());
+
+        $this->assertEquals('LOWERCASE STRING', $values[7]);
+    }
+
+    /**
+     * @test
+     */
+    public function mod_explode_works()
+    {
+        extract($this->testMod());
+
+        $this->assertEquals(['lowercase', 'string'], $values[8]);
+    }
+
+    /**
+     * @test
+     */
+    public function mod_strtolower_works()
+    {
+        extract($this->testMod());
+
+        $this->assertEquals('uppersace string', $values[9]);
     }
 
     /**

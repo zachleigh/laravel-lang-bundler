@@ -229,6 +229,30 @@ bundle_item('user.invite_from', 'key_change', [
     'new' => 'newKey'
 ]),
 ```
+###### explode
+Explode by given delimiter. Does nothing to key. Requires 'delimiter' parameter.
+```php
+bundle_item('user.invite_from', 'value_explode', [
+    'delimiter' => ' '
+]),
+
+###### strtolower
+Lowercase entrire string.
+```php
+bundle_item('home.invite_from', 'value_strtolower')
+```
+
+###### strtoupper
+Capitalize entire string.
+```php
+bundle_item('home.invite_from', 'value_strtoupper')
+```
+
+###### ucfirst
+Make first character in string capitalized.
+```php
+bundle_item('home.invite_from', 'value_ucfirst')
+```
 
 ###### values
 If translation value is an array, run array_values() on array and return only values keyed by integers. Does nothing to keys.
