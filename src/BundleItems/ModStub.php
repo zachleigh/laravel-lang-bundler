@@ -2,8 +2,6 @@
 
 namespace LaravelLangBundler\BundleItems;
 
-use LaravelLangBundler\BundleItems\ItemWrapper;
-
 class ModStub extends ItemWrapper
 {
     /*

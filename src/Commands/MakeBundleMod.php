@@ -29,7 +29,7 @@ class MakeBundleMod extends Command
     {
         $filesystem = new Filesystem();
 
-        $pathArray = ['LangBundler', 'Mods', ];
+        $pathArray = ['LangBundler', 'Mods'];
 
         $path = app_path().'/';
 
@@ -56,8 +56,8 @@ class MakeBundleMod extends Command
     /**
      * Get stub and fill.
      *
-     * @param  string $name
-     * @param  Filestystem $filesystem
+     * @param string      $name
+     * @param Filestystem $filesystem
      *
      * @return string
      */
