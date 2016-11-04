@@ -3,9 +3,21 @@
 namespace LaravelLangBundler\BundleItems;
 
 use Illuminate\Container\Container;
+use LaravelLangBundler\Exceptions\InvalidModificationTarget;
 
 class ItemFactory
 {
+    /**
+     * Allowed values for BundleItem target property.
+     *
+     * @var array
+     */
+    const ALLOWEDTARGETS = [
+        'value',
+        'key',
+        'both',
+    ];
+
     /**
      * Build a BundleItem instance.
      *
@@ -21,7 +33,9 @@ class ItemFactory
             return new BundleItem($id, null, $parameters);
         }
 
-        list($affect, $name) = explode('_', $type);
+        list($target, $name) = explode('_', $type);
+
+        static::validateTarget($target);
 
         $className = ucfirst($name).'Mod';
 
@@ -29,12 +43,26 @@ class ItemFactory
 
         $localClass = "\\{$appNamespace}LangBundler\\Mods\\{$className}";
 
-        if (class_exists($localClass)) {
-            return new $localClass($id, $affect, $parameters);
-        }
-
         $vendorClass = "\LaravelLangBundler\\BundleItems\\Mods\\{$className}";
 
-        return new $vendorClass($id, $affect, $parameters);
+        if (class_exists($localClass)) {
+            return new $localClass($id, $target, $parameters);
+        } else if (class_exists($vendorClass)) {
+            return new $vendorClass($id, $target, $parameters);
+        }
+    }
+
+    /**
+     * Validate the target.
+     *
+     * @param  string $target
+     *
+     * @throws InvalidModificationTarget
+     */
+    protected static function validateTarget($target)
+    {
+        if (!in_array($target, self::ALLOWEDTARGETS)) {
+            throw InvalidModificationTarget::targetNotAllowed($target);
+        }
     }
 }

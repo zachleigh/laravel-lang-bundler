@@ -209,6 +209,15 @@ return [
 ];
 ```
 
+Or, if we wanted to perform the modification on both the key and the value:
+```php
+return [
+    bundle_item('user.welcome_user', 'both_strtoupper'),
+    'user.message_to',
+    'user.invite_from'
+];
+```
+
 ##### Available modifiers
 ###### callback
 Perform a callback on a key or value. Requires a 'callback' parameter.

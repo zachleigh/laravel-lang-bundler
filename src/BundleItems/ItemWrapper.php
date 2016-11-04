@@ -5,11 +5,11 @@ namespace LaravelLangBundler\BundleItems;
 abstract class ItemWrapper extends BundleItem
 {
     /**
-     * Affect 'key', 'value' or 'both'.
+     * Target: 'key', 'value' or 'both'.
      *
      * @var string
      */
-    protected $affect;
+    protected $target;
 
     /**
      * Any parameters needed for the effect.
@@ -22,26 +22,36 @@ abstract class ItemWrapper extends BundleItem
      * Construct.
      *
      * @param string $id
-     * @param string $affect
+     * @param string $target
      * @param array  $wrapperParameters
      */
-    public function __construct($id, $affect = null, array $wrapperParameters = [])
+    public function __construct($id, $target = null, array $wrapperParameters = [])
     {
         parent::__construct($id);
 
-        $this->affect = $affect;
+        $this->target = $target;
 
         $this->wrapperParameters = $wrapperParameters;
     }
 
     /**
-     * If affect is key, get key from child. Otherwise, get from parent.
+     * Get the set target.
+     *
+     * @return string
+     */
+    public function getAffect()
+    {
+        return $this->target;
+    }
+
+    /**
+     * If target is key, get key from child. Otherwise, get from parent.
      *
      * @return string
      */
     public function getKey()
     {
-        if ($this->affect === 'key' || $this->affect === 'both') {
+        if ($this->target === 'key' || $this->target === 'both') {
             return $this->key($this->key);
         }
 
@@ -49,13 +59,13 @@ abstract class ItemWrapper extends BundleItem
     }
 
     /**
-     * If affect is value, get value from child. Otherwise, get from parent.
+     * If target is value, get value from child. Otherwise, get from parent.
      *
      * @return mixed
      */
     public function getValue()
     {
-        if ($this->affect === 'value' || $this->affect === 'both') {
+        if ($this->target === 'value' || $this->target === 'both') {
             return $this->value($this->value);
         }
 
