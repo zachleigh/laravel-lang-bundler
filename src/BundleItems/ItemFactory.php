@@ -27,7 +27,7 @@ class ItemFactory
      *
      * @return BundleItem
      */
-    public static function build($id, $type = null, $parameters = [])
+    public static function build($id, $type = null, array $parameters = [])
     {
         if (is_null($type)) {
             return new BundleItem($id, null, $parameters);
@@ -35,7 +35,7 @@ class ItemFactory
 
         list($target, $name) = explode('_', $type);
 
-        static::validateTarget($target);
+        self::validateTarget($target);
 
         $className = ucfirst($name).'Mod';
 

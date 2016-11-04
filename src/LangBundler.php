@@ -42,7 +42,7 @@ class LangBundler
      *
      * @return Collection
      */
-    public function trans($id, $parameters = [], $domain = 'messages', $locale = null)
+    public function trans($id, array $parameters = [], $domain = 'messages', $locale = null)
     {
         $bundle = new Bundle($id, $this->bundleMap);
 

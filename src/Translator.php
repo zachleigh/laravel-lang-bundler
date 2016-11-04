@@ -19,7 +19,7 @@ class Translator
      */
     public function translateBundle(
         Bundle $bundle,
-        $parameters = [],
+        array $parameters = [],
         $domain = 'messages',
         $locale = null
     ) {

@@ -13,7 +13,7 @@ if (!function_exists('transB')) {
      *
      * @return \Symfony\Component\Translation\TranslatorInterface|string
      */
-    function transB($id = null, $parameters = [], $domain = 'messages', $locale = null)
+    function transB($id = null, array $parameters = [], $domain = 'messages', $locale = null)
     {
         if (is_null($id)) {
             return app('LaravelLangBundler\LangBundler');
@@ -28,12 +28,12 @@ if (!function_exists('bundle_item')) {
      * Create a BundleItem class directly from the bundle registration file.
      *
      * @param string $id
-     * @param string $type       Filename_affected
+     * @param string $type       target_modType
      * @param array  $parameters
      *
      * @return BundleItem
      */
-    function bundle_item($id, $type = null, $parameters = [])
+    function bundle_item($id, $type = null, array $parameters = [])
     {
         return ItemFactory::build($id, $type, $parameters);
     }
