@@ -47,7 +47,7 @@ class ItemFactory
 
         if (class_exists($localClass)) {
             return new $localClass($id, $target, $parameters);
-        } else if (class_exists($vendorClass)) {
+        } elseif (class_exists($vendorClass)) {
             return new $vendorClass($id, $target, $parameters);
         }
 
@@ -57,7 +57,7 @@ class ItemFactory
     /**
      * Validate the target.
      *
-     * @param  string $target
+     * @param string $target
      *
      * @throws InvalidModificationTarget
      */
