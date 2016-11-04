@@ -61,11 +61,22 @@ class ItemFactoryTest extends TestCase
     /**
      * @test
      *
-     * @expectedException LaravelLangBundler\Exceptions\InvalidModificationTarget
-     * @expectedExceptionMessage Target invaild is not allowed. Alowed targets are 'key', 'value', and 'both'.
+     * @expectedException LaravelLangBundler\Exceptions\InvalidModificationArgument
+     * @expectedExceptionMessage Target invalid is not allowed. Allowed targets are 'key', 'value', and 'both'.
      */
     public function it_throws_exception_for_invalid_target_value()
     {
         $bundleItem = ItemFactory::build('id', 'invalid_strtoupper');
+    }
+
+    /**
+     * @test
+     *
+     * @expectedException LaravelLangBundler\Exceptions\InvalidModificationArgument
+     * @expectedExceptionMessage Class InvalidMod can not be found.
+     */
+    public function it_throws_exception_for_invalid_mod_name()
+    {
+        $bundleItem = ItemFactory::build('id', 'key_invalid');
     }
 }

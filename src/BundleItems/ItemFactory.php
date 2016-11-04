@@ -3,7 +3,7 @@
 namespace LaravelLangBundler\BundleItems;
 
 use Illuminate\Container\Container;
-use LaravelLangBundler\Exceptions\InvalidModificationTarget;
+use LaravelLangBundler\Exceptions\InvalidModificationArgument;
 
 class ItemFactory
 {
@@ -50,6 +50,8 @@ class ItemFactory
         } else if (class_exists($vendorClass)) {
             return new $vendorClass($id, $target, $parameters);
         }
+
+        throw InvalidModificationArgument::modifcationClassNotFound($className);
     }
 
     /**
@@ -62,7 +64,7 @@ class ItemFactory
     protected static function validateTarget($target)
     {
         if (!in_array($target, self::ALLOWEDTARGETS)) {
-            throw InvalidModificationTarget::targetNotAllowed($target);
+            throw InvalidModificationArgument::targetNotAllowed($target);
         }
     }
 }
