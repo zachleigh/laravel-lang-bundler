@@ -32,5 +32,4 @@ class InvalidModificationArgument extends Exception
     {
         return new static("Class {$className} can not be found.");
     }
-
 }
