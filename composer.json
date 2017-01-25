@@ -1,6 +1,7 @@
 {
     "name": "zachleigh/laravel-lang-bundler",
     "description": "Create Laravel translations bundles.",
+    "keywords": ["laravel", "localization", "translation", "language", "lang"],
     "type": "project",
     "license": "MIT",
     "authors": [
