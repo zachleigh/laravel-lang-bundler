@@ -7,9 +7,9 @@ use LaravelLangBundler\Translator;
 use Illuminate\Filesystem\Filesystem;
 use LaravelLangBundler\ServiceProvider;
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Testing\TestCase as IlluminateTestCase;
+use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
-class TestCase extends IlluminateTestCase
+class TestCase extends BaseTestCase
 {
     /**
      * Bundler instance.

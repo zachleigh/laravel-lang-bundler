@@ -20,11 +20,10 @@ class Translator
     public function translateBundle(
         Bundle $bundle,
         array $parameters = [],
-        $domain = 'messages',
         $locale = null
     ) {
         return $bundle->getValues()
-            ->mapWithKeys(function ($bundleItem) use ($parameters, $domain, $locale) {
+            ->mapWithKeys(function ($bundleItem) use ($parameters, $locale) {
                 $bundleItem->setParameters($parameters);
 
                 if ($choice = $bundleItem->hasChoice()) {
@@ -32,14 +31,12 @@ class Translator
                         $bundleItem->getId(),
                         $choice,
                         $bundleItem->getParameters(),
-                        $domain,
                         $locale
                     );
                 } else {
                     $value = app('translator')->trans(
                         $bundleItem->getId(),
                         $bundleItem->getParameters(),
-                        $domain,
                         $locale
                     );
                 }

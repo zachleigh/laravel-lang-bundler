@@ -150,7 +150,7 @@ class BundleItem
     {
         $this->parameters = collect($parameters)->mapWithKeys(function ($value, $key) {
             if (!$key = $this->getNamespacedKey($key)) {
-                return;
+                return [];
             }
 
             if ($key === 'choice') {
