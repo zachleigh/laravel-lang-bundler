@@ -248,6 +248,7 @@ Explode by given delimiter. Does nothing to key. Requires 'delimiter' parameter.
 bundle_item('user.invite_from', 'value_explode', [
     'delimiter' => ' '
 ]),
+```
 
 ###### strtolower
 Lowercase entrire string.
