@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](//packagist.org/packages/zachleigh/laravel-lang-bundler)
 [![Build Status](https://img.shields.io/travis/zachleigh/laravel-lang-bundler/master.svg)](https://travis-ci.org/zachleigh/laravel-lang-bundler)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/1540159e-b56f-4539-b4ce-bb9f4ab8e583.svg)](https://insight.sensiolabs.com/projects/1540159e-b56f-4539-b4ce-bb9f4ab8e583)
-[![Quality Score](https://img.shields.io/scrutinizer/g/zachleigh/laravel-property-bag.svg)](https://scrutinizer-ci.com/g/zachleigh/laravel-property-bag/)
+[![Quality Score](https://img.shields.io/scrutinizer/g/zachleigh/laravel-lang-bundler.svg)](https://scrutinizer-ci.com/g/zachleigh/laravel-lang-bundler/)
 [![StyleCI](https://styleci.io/repos/72352058/shield?style=flat)](https://styleci.io/repos/72352058)
 [![Total Downloads](https://img.shields.io/packagist/dt/zachleigh/laravel-lang-bundler.svg)](https://packagist.org/packages/zachleigh/laravel-lang-bundler)
 
