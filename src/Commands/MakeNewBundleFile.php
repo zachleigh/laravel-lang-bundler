@@ -33,7 +33,7 @@ class MakeNewBundleFile extends LaravelLangBundlerCommand
 
         $basePath = resource_path('lang/');
 
-        $path = $this->buildPath($pathArray, $basePath);
+        $path = $this->buildPath($pathArray->all(), $basePath);
 
         $this->createFile($path, $filename);
 

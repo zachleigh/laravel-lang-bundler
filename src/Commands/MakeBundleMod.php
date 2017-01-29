@@ -31,7 +31,7 @@ class MakeBundleMod extends LaravelLangBundlerCommand
 
         $basePath = app_path().'/';
 
-        $path = $this->buildPath($pathArray, $basePath);
+        $this->buildPath($pathArray, $basePath);
 
         $name = ucfirst($this->argument('name')).'Mod';
 
