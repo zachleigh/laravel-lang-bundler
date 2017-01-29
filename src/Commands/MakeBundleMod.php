@@ -2,11 +2,9 @@
 
 namespace LaravelLangBundler\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Container\Container;
-use Illuminate\Filesystem\Filesystem;
 
-class MakeBundleMod extends Command
+class MakeBundleMod extends LaravelLangBundlerCommand
 {
     /**
      * The name and signature of the console command.
@@ -27,25 +25,19 @@ class MakeBundleMod extends Command
      */
     public function handle()
     {
-        $filesystem = new Filesystem();
+        $this->setUp();
 
         $pathArray = ['LangBundler', 'Mods'];
 
-        $path = app_path().'/';
+        $basePath = app_path().'/';
 
-        foreach ($pathArray as $directory) {
-            $path .= $directory.'/';
-
-            if (!$filesystem->exists($path)) {
-                $filesystem->makeDirectory($path);
-            }
-        }
+        $path = $this->buildPath($pathArray, $basePath);
 
         $name = ucfirst($this->argument('name')).'Mod';
 
-        $stub = $this->getStub($name, $filesystem);
+        $stub = $this->getStub($name);
 
-        $filesystem->put(
+        $this->filesystem->put(
             app_path(implode('/', $pathArray).'/'.$name.'.php'),
             $stub
         );
@@ -56,18 +48,17 @@ class MakeBundleMod extends Command
     /**
      * Get stub and fill.
      *
-     * @param string      $name
-     * @param Filestystem $filesystem
+     * @param string $name
      *
      * @return string
      */
-    protected function getStub($name, $filesystem)
+    protected function getStub($name)
     {
         $namespace = Container::getInstance()->getNamespace();
 
         $namespace = $namespace.'LangBundler\\Mods';
 
-        $stub = $filesystem->get(__DIR__.'/../BundleItems/ModStub.php');
+        $stub = $this->filesystem->get(__DIR__.'/../BundleItems/ModStub.php');
 
         $stub = str_replace(
             'LaravelLangBundler\BundleItems',

@@ -172,13 +172,13 @@ class BundleItem
     {
         $keyArray = explode('.', $key);
 
-        if (count($keyArray) === 2 && $keyArray[0] === $this->getNamespace()) {
-            $key = $keyArray[1];
-        } elseif (count($keyArray) === 2 && $keyArray[0] !== $this->getNamespace()) {
-            return;
+        if (count($keyArray) !== 2) {
+            return $key;
+        } elseif ($keyArray[0] === $this->getNamespace()) {
+            return $keyArray[1];
         }
 
-        return $key;
+        return null;
     }
 
     /**

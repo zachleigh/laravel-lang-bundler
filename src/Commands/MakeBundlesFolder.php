@@ -2,10 +2,7 @@
 
 namespace LaravelLangBundler\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
-
-class MakeBundlesFolder extends Command
+class MakeBundlesFolder extends LaravelLangBundlerCommand
 {
     /**
      * The name and signature of the console command.
@@ -26,12 +23,12 @@ class MakeBundlesFolder extends Command
      */
     public function handle()
     {
-        $filesystem = new Filesystem();
+        $this->setUp();
 
         $directory = resource_path('lang/bundles');
 
-        if (!$filesystem->exists($directory)) {
-            $filesystem->makeDirectory($directory);
+        if (!$this->filesystem->exists($directory)) {
+            $this->filesystem->makeDirectory($directory);
         }
 
         $this->info('Bundles folder successfully created!');

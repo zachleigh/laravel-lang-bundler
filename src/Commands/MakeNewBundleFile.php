@@ -2,10 +2,7 @@
 
 namespace LaravelLangBundler\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
-
-class MakeNewBundleFile extends Command
+class MakeNewBundleFile extends LaravelLangBundlerCommand
 {
     /**
      * The name and signature of the console command.
@@ -26,42 +23,21 @@ class MakeNewBundleFile extends Command
      */
     public function handle()
     {
-        $filesystem = new Filesystem();
+        $this->setUp();
 
         $pathArray = collect(explode('.', $this->argument('path')));
 
         $filename = $pathArray->pop().'.php';
 
-        $path = $this->buildDirectoryStructure($pathArray, $filesystem);
-
-        $this->createFile($path, $filename, $filesystem);
-
-        $this->info('Bundle file successfully created!');
-    }
-
-    /**
-     * Create directories included in path if they don't exist.
-     *
-     * @param Collection $pathArray
-     * @param filesystem $filesystem
-     *
-     * @return string
-     */
-    protected function buildDirectoryStructure($pathArray, $filesystem)
-    {
         $pathArray->prepend('bundles');
 
-        $path = resource_path('lang/');
+        $basePath = resource_path('lang/');
 
-        foreach ($pathArray as $directory) {
-            $path .= $directory.'/';
+        $path = $this->buildPath($pathArray, $basePath);
 
-            if (!$filesystem->exists($path)) {
-                $filesystem->makeDirectory($path);
-            }
-        }
+        $this->createFile($path, $filename);
 
-        return $path;
+        $this->info('Bundle file successfully created!');
     }
 
     /**
@@ -69,16 +45,15 @@ class MakeNewBundleFile extends Command
      *
      * @param string     $path
      * @param string     $filename
-     * @param Filesystem $filesystem
      */
-    protected function createFile($path, $filename, $filesystem)
+    protected function createFile($path, $filename)
     {
         $filePath = $path.$filename;
 
         $stub = __DIR__.'/bundle-file-stub.php';
 
-        if (!$filesystem->exists($filePath)) {
-            $filesystem->copy($stub, $filePath);
+        if (!$this->filesystem->exists($filePath)) {
+            $this->filesystem->copy($stub, $filePath);
         }
     }
 }

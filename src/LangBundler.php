@@ -39,7 +39,7 @@ class LangBundler
      * @param array  $parameters
      * @param string $locale
      *
-     * @return Illuminate\Support\Collection
+     * @return \Illuminate\Support\Collection
      */
     public function trans($id, array $parameters = [], $locale = null)
     {
