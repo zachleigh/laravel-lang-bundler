@@ -43,8 +43,8 @@ class MakeNewBundleFile extends LaravelLangBundlerCommand
     /**
      * Create file from stub.
      *
-     * @param string     $path
-     * @param string     $filename
+     * @param string $path
+     * @param string $filename
      */
     protected function createFile($path, $filename)
     {

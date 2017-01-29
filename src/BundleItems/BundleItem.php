@@ -177,8 +177,6 @@ class BundleItem
         } elseif ($keyArray[0] === $this->getNamespace()) {
             return $keyArray[1];
         }
-
-        return null;
     }
 
     /**
