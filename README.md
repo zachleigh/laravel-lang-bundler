@@ -1,9 +1,12 @@
 # Laravel Lang Bundler   
-[![Build Status](https://travis-ci.org/zachleigh/laravel-lang-bundler.svg?branch=master)](https://travis-ci.org/zachleigh/laravel-lang-bundler)
-[![Latest Stable Version](https://poser.pugx.org/zachleigh/laravel-lang-bundler/version.svg)](//packagist.org/packages/zachleigh/laravel-lang-bundler)
-[![Total Downloads](https://poser.pugx.org/zachleigh/laravel-lang-bundler/downloads)](https://packagist.org/packages/zachleigh/laravel-lang-bundler)
+[![Latest Stable Version](https://img.shields.io/packagist/v/zachleigh/laravel-lang-bundler.svg)](//packagist.org/packages/zachleigh/laravel-lang-bundler)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](//packagist.org/packages/zachleigh/laravel-lang-bundler)
+[![Build Status](https://img.shields.io/travis/zachleigh/laravel-lang-bundler/master.svg)](https://travis-ci.org/zachleigh/laravel-lang-bundler)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/1540159e-b56f-4539-b4ce-bb9f4ab8e583.svg)](https://insight.sensiolabs.com/projects/1540159e-b56f-4539-b4ce-bb9f4ab8e583)
+[![Quality Score](https://img.shields.io/scrutinizer/g/zachleigh/laravel-property-bag.svg)](https://scrutinizer-ci.com/g/zachleigh/laravel-property-bag/)
 [![StyleCI](https://styleci.io/repos/72352058/shield?style=flat)](https://styleci.io/repos/72352058)
-[![License](https://poser.pugx.org/zachleigh/laravel-lang-bundler/license.svg)](//packagist.org/packages/zachleigh/laravel-lang-bundler)  
+[![Total Downloads](https://img.shields.io/packagist/dt/zachleigh/laravel-lang-bundler.svg)](https://packagist.org/packages/zachleigh/laravel-lang-bundler)
+
 ##### Make bundles of translation values. 
 
 ### Contents
