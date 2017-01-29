@@ -8,18 +8,17 @@ if (!function_exists('transB')) {
      *
      * @param string $id
      * @param array  $parameters
-     * @param string $domain
      * @param string $locale
      *
      * @return \Symfony\Component\Translation\TranslatorInterface|string
      */
-    function transB($id = null, array $parameters = [], $domain = 'messages', $locale = null)
+    function transB($id = null, array $parameters = [], $locale = null)
     {
         if (is_null($id)) {
             return app('LaravelLangBundler\LangBundler');
         }
 
-        return app('LaravelLangBundler\LangBundler')->trans($id, $parameters, $domain, $locale);
+        return app('LaravelLangBundler\LangBundler')->trans($id, $parameters, $locale);
     }
 }
 

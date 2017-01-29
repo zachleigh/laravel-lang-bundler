@@ -164,9 +164,7 @@ class Bundle
     }
 
     /**
-     * Get bundle values for given path.
-     *
-     * @param Bundle $bundle
+     * Get bundle values from bundle map.
      *
      * @return Collection
      */
@@ -189,8 +187,6 @@ class Bundle
 
     /**
      * Build pathKeys array and set namespace.
-     *
-     * @param array $autoAliases
      */
     protected function buildKeys()
     {
@@ -203,8 +199,6 @@ class Bundle
 
     /**
      * Get keys from id.
-     *
-     * @param array $autoAliases
      *
      * @return array
      */

@@ -21,7 +21,7 @@ class CallbackMod extends ItemWrapper
     /**
      * Alter value and return.
      *
-     * @param mixed $value
+     * @param string $value
      *
      * @return mixed
      */
@@ -33,7 +33,7 @@ class CallbackMod extends ItemWrapper
     /**
      * Call the given callback.
      *
-     * @param callable $string
+     * @param string $string
      *
      * @return string
      */

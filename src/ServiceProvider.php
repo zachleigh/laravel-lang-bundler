@@ -17,7 +17,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(LangBundler::class, function ($app) {
+        $this->app->singleton(LangBundler::class, function () {
             return new LangBundler(
                 new BundleMap(),
                 new Translator()

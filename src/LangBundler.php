@@ -37,19 +37,18 @@ class LangBundler
      *
      * @param string $id
      * @param array  $parameters
-     * @param string $domain
      * @param string $locale
      *
-     * @return Collection
+     * @return Illuminate\Support\Collection
      */
-    public function trans($id, array $parameters = [], $domain = 'messages', $locale = null)
+    public function trans($id, array $parameters = [], $locale = null)
     {
         $bundle = new Bundle($id, $this->bundleMap);
 
         if ($bundle->hasNoValues()) {
-            return app('translator')->trans($id, $parameters, $domain, $locale);
+            return app('translator')->trans($id, $parameters, $locale);
         }
 
-        return $this->translator->translateBundle($bundle, $parameters, $domain, $locale);
+        return $this->translator->translateBundle($bundle, $parameters, $locale);
     }
 }

@@ -4,6 +4,7 @@ namespace LaravelLangBundler;
 
 use Illuminate\Support\Collection;
 use LaravelLangBundler\Bundle\Bundle;
+use LaravelLangBundler\BundleItems\BundleItem;
 
 class Translator
 {
@@ -12,7 +13,6 @@ class Translator
      *
      * @param Bundle $bundle
      * @param array  $parameters
-     * @param string $domain
      * @param string $locale
      *
      * @return Collection
@@ -23,7 +23,7 @@ class Translator
         $locale = null
     ) {
         return $bundle->getValues()
-            ->mapWithKeys(function ($bundleItem) use ($parameters, $locale) {
+            ->mapWithKeys(function (BundleItem $bundleItem) use ($parameters, $locale) {
                 $bundleItem->setParameters($parameters);
 
                 if ($choice = $bundleItem->hasChoice()) {

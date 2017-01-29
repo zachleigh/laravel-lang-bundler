@@ -30,7 +30,7 @@ class ItemFactory
     public static function build($id, $type = null, array $parameters = [])
     {
         if (is_null($type)) {
-            return new BundleItem($id, null, $parameters);
+            return new BundleItem($id);
         }
 
         list($target, $name) = explode('_', $type);
