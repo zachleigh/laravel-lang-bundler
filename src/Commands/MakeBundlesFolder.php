@@ -25,7 +25,7 @@ class MakeBundlesFolder extends LaravelLangBundlerCommand
     {
         $this->setUp();
 
-        $directory = resource_path('lang/bundles');
+        $directory = resource_path('lang'.DIRECTORY_SEPARATOR.'bundles');
 
         if (!$this->filesystem->exists($directory)) {
             $this->filesystem->makeDirectory($directory);

@@ -131,7 +131,7 @@ class BundleMap
      */
     protected function getPathKeys($path)
     {
-        $key = str_replace('.php', '', explode('/bundles/', $path)[1]);
+        $key = str_replace('.php', '', explode(DIRECTORY_SEPARATOR.'bundles'.DIRECTORY_SEPARATOR, $path)[1]);
 
         return explode('/', $key);
     }

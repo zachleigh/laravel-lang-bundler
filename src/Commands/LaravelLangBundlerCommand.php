@@ -33,7 +33,7 @@ class LaravelLangBundlerCommand extends Command
     protected function buildPath($pathArray, $path)
     {
         foreach ($pathArray as $directory) {
-            $path .= $directory.'/';
+            $path .= $directory.DIRECTORY_SEPARATOR;
 
             if (!$this->filesystem->exists($path)) {
                 $this->filesystem->makeDirectory($path);

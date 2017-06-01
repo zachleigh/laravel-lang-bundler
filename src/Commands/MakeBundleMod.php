@@ -29,7 +29,7 @@ class MakeBundleMod extends LaravelLangBundlerCommand
 
         $pathArray = ['LangBundler', 'Mods'];
 
-        $basePath = app_path().'/';
+        $basePath = app_path().DIRECTORY_SEPARATOR;
 
         $this->buildPath($pathArray, $basePath);
 
@@ -38,7 +38,7 @@ class MakeBundleMod extends LaravelLangBundlerCommand
         $stub = $this->getStub($name);
 
         $this->filesystem->put(
-            app_path(implode('/', $pathArray).'/'.$name.'.php'),
+            app_path(implode(DIRECTORY_SEPARATOR, $pathArray).DIRECTORY_SEPARATOR.$name.'.php'),
             $stub
         );
 
@@ -58,7 +58,8 @@ class MakeBundleMod extends LaravelLangBundlerCommand
 
         $namespace = $namespace.'LangBundler\\Mods';
 
-        $stub = $this->filesystem->get(__DIR__.'/../BundleItems/ModStub.php');
+        $stub = $this->filesystem->get(
+            dirname(__DIR__).DIRECTORY_SEPARATOR.'BundleItems'.DIRECTORY_SEPARATOR.'ModStub.php');
 
         $stub = str_replace(
             'LaravelLangBundler\BundleItems',

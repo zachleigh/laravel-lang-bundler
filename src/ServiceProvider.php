@@ -35,7 +35,7 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config.php' => config_path('lang-bundler.php'),
+            __DIR__.DIRECTORY_SEPARATOR.'config.php' => config_path('lang-bundler.php'),
         ], 'config');
     }
 

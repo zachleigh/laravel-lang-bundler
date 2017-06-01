@@ -31,7 +31,7 @@ class MakeNewBundleFile extends LaravelLangBundlerCommand
 
         $pathArray->prepend('bundles');
 
-        $basePath = resource_path('lang/');
+        $basePath = resource_path('lang'.DIRECTORY_SEPARATOR);
 
         $path = $this->buildPath($pathArray->all(), $basePath);
 
@@ -50,7 +50,7 @@ class MakeNewBundleFile extends LaravelLangBundlerCommand
     {
         $filePath = $path.$filename;
 
-        $stub = __DIR__.'/bundle-file-stub.php';
+        $stub = __DIR__.DIRECTORY_SEPARATOR.'bundle-file-stub.php';
 
         if (!$this->filesystem->exists($filePath)) {
             $this->filesystem->copy($stub, $filePath);
