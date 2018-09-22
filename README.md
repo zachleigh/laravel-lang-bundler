@@ -41,6 +41,9 @@ And this is so much better:
 ```
 
 ### Upgrade Information
+##### Version 1.0.* to Version 1.1.*
+Version 1.1.0 drops support for PHP versions lower than 7.1.
+
 ##### Version 0.9.* to Version 1.0.0
 Version 1.0.0 is more a confimation of the current api and usage than anything else. Adds support for Laravel 5.4. If using Laravel 5.3, please use [Version 0.9.11](https://github.com/zachleigh/laravel-lang-bundler/tree/v0.9.11):
 ```
